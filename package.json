@@ -1,0 +1,19 @@
+{
+  "name": "chitchat_front",
+  "version": "0.0.1",
+  "description": "chitchat_frontend server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuponthetop/chitchat_front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuponthetop/chitchat_front/issues"
+  },
+  "homepage": "https://github.com/cuponthetop/chitchat_front#readme"
+}
