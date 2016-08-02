@@ -2,8 +2,9 @@
   "name": "chitchat_front",
   "version": "0.0.1",
   "description": "chitchat_frontend server",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
