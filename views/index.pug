@@ -6,7 +6,9 @@ html
   body
     h1= title
     p Welcome to #{title}
-    script(src='javascripts/fb.js')
-    fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')
+    script(src='js/fb.js')
+    script(src='js/httpUtil.js')
+    script(src='js/account.js')
+    fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')#fb-button
 
     #status
