@@ -22,7 +22,7 @@ function retrieveUserIDwithFBID(fbID) {
 
 function createChitChatAccount(fbID, name, gender, email) {
   var params = {
-    fbID: fbID,
+    fbid: fbID,
     name: name,
     gender: gender,
     email: email
