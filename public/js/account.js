@@ -27,7 +27,7 @@ function createChitChatAccount(fbID, name, gender, email) {
     gender: gender,
     email: email
   };
-  httpUtil.post(HOST_URL + 'api/v1/users', parms, function (err, result) {
+  httpUtil.post(HOST_URL + 'api/v1/users', params, function (err, result) {
     if (result && result.status === 0) {
       // success
       // maybe redirect to some page?/??
