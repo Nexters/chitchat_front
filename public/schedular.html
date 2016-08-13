@@ -1,0 +1,69 @@
+ 
+ <!DOCTYPE html>
+<html lang="en-US">
+   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/chitchat.css">
+    <script src="js/bootstrap.js"></script>
+ </head>
+<body ng-app="tschedularApp" ng-controller="tschedularCtrl">
+    <nav class="cc-nav">
+        <ul>
+            <li class="left"><a class="logo"><img src="./img/main_logo.png" alt=""></a></li>
+            <li class="right" ><a href="#contact">회원가입</a></li>
+            <li class="right" style="padding-right:1%;"><a href="#contact">로그인</a></li>
+        </ul>
+    </nav>
+
+    <div class="cc-container-group">
+ <div class="container-2">
+              <div class="container-2-btn">
+                   <ul>
+                        <li><a ng-click="callJson(mon)">{{mon}}</a></li>
+                        <li><a ng-click="callJson(tue)">{{tue}}</a></li>
+                        <li><a ng-click="callJson(wed)">{{wed}}</a></li>
+                        <li><a ng-click="callJson(thu)">{{thu}}</a></li>
+                        <li><a ng-click="callJson(fri)">{{fri}}</a></li>
+                        <li><a ng-click="callJson(sat)">{{sat}}</a></li>
+                        <li><a ng-click="callJson(sun)">{{sun}}</a></li>
+                  </ul>
+              </div> 
+              <hr class="border">
+              <div>
+                    <ul class="container-2-time">
+                            <li class="title">현재시간<span style="float:right" ><img src="./img/main_body_button_left2.png" alt="left" style="width:30%;"/></span></li>
+                            <li>오후 07:00</li>
+                            <li>오후 08:00</li>
+                            <li>오후 09:00<span style="float:right" ><img src="./img/main_body_button_right2.png" alt="right" style="width:30%;"/></span></li>
+                    </ul>
+             </div>
+            <table class="container-2-timetable" style="border:#BABABB;" >
+                    <tbody>
+                        <tr>
+                            <td>1111</td>
+                            <td  ng-repeat="x in dramalist" ng-if="x.channel=='1111'"  ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide ="cheked">{{x}}</span>
+                            <input type="button" value="chat" ng-click="openNewWindows()" ng-show="cheked"/></td>
+                        </tr>
+                        <tr>
+                            <td>2222</td>
+                            <td  ng-repeat="x in dramalist" ng-if="x.channel=='2222'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide ="cheked" >{{x}}</span>
+                            <input type="button" value="chat" ng-click="alertfunction(x.id)"  ng-show="cheked"/></td>  
+                        </tr>   
+                        <tr>
+                            <td>3333</td>
+                            <td  ng-repeat="x in dramalist" ng-if="x.channel=='3333'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false" ><span ng-hide ="cheked" >{{x}}</span>
+                            <input type="button" value="chat" ng-click="alertfunction(x.id)"  ng-show="cheked"/></td>  
+                        </tr>                 
+                     </tbody> 
+                </table>
+            </div>
+       </div>    
+  <script src="js/tschedular.js"></script>
+</body>
+</html>
