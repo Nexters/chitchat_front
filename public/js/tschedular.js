@@ -31,7 +31,7 @@ tschedularApp.controller('tschedularCtrl', function($scope, $http, $window, $int
 
     $scope.openNewWindows = function(){
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
-        $window.open('chat.html', '', "top=" + top + ",left=" + left + ",width=400,height=600")    
+        $window.open('chatroom.html', '', "top=" + top + ",left=" + left + ",width=400,height=600")    
     }
   
     //채팅창 입장!
