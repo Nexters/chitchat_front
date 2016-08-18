@@ -1,9 +1,21 @@
+"use strict";
+
 var express = require('express');
-var router = express.Router();
+var loginCheck = require('../util/login-check');
 
-/* GET users listing. */
-router.get('/facebook/callback', function(req, res, next) {
-  res.send('respond with a resource');
-});
+function setupAuthRoutes(passport) {
 
-module.exports = router;
+  var router = express.Router();
+
+  router.get('/facebook', passport.authenticate('facebook'));
+
+  /* GET users listing. */
+  router.get('/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/login_success',
+    failureRedirect: '/login_fail'
+  }));
+
+  return router;
+}
+
+module.exports = setupAuthRoutes;
