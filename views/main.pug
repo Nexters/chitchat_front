@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     h1= title
-    p Welcome to #{title}
-    fb:login-button(scope='public_profile,email', onlogin='checkLoginState();')#fb-button
+    script(type='text/javascript')
+      | localStorage.token = #{token};
 
     #status
