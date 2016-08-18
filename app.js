@@ -32,10 +32,13 @@ app.use(cookieParser());
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/auth', auth(passport));
+
+
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,6 +71,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(80, () => {
+app.listen(3000, () => {
 
 });
