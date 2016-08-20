@@ -22,4 +22,6 @@ router.get('/', function (req, res, next) {
   res.render('index', { token: JSON.stringify('') });
 });
 
+
+
 module.exports = router;

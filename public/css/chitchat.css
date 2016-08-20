@@ -128,9 +128,7 @@ ul.topnav li.right {float: right;}
     }
 }
 /*------thumnail----end-----------*/
-
-
- .container-2-btn ul{
+.container-2-btn ul{
      float:left;
      width:88%;
      height:100%;
@@ -154,10 +152,6 @@ ul.topnav li.right {float: right;}
     color: black;
     text-decoration: none;
 }
-
-
-
-
 
 .border{
     border:2px solid #7184a9;
@@ -184,31 +178,23 @@ ul.topnav li.right {float: right;}
     margin : 0 auto;
 }
 
-
-
 /*timetable*/
-
-
 .timetable{
-float:left;
+    float:left;
     width:100%;
     text-align: center;
-   font-size: 1.4em;
-   margin: 0;
-   padding:0;
-
+    font-size: 1.4em;
+    margin: 0;
+    padding:0;
 }
-
 
 .timetable-row{
     width:100%;
     height:50px;
     margin:0;
-    
 }
 
 .timetable-title{
-   
     display : inline-block;
     color: #565656;
     width:13%;
@@ -216,10 +202,6 @@ float:left;
     padding: 0;
     border:1px solid #565656 ;
     margin-right:-1%;
-    margin-top: -1%;
-   
-    
- 
 }
 
 #div, #span {
