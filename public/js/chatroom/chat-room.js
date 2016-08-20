@@ -2,7 +2,7 @@ tchatroomApp = angular.module('tchatroomApp',[]);
 
 tchatroomApp.controller('tchatroomCtrl',['$scope', function($scope, ChatService){
 
-    var socket = io('chitchat.zone/chat');
+    var socket = io(HOST_URL);
 
     $scope.chatroomid =location.search.substring(1);
     //$scope.chatContent = "";

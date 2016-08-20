@@ -74,7 +74,6 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
     $scope.showDramaList = function () {
-
         // if already checked, return 0;
         if ($scope.checked) {
             return;
@@ -89,7 +88,6 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         promise.then(function (dramas) {
             $scope.dramalist = dramas;
-            console.log($scope.dramalist);
             $scope.$apply();
         }, function () {
 
