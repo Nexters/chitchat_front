@@ -1,10 +1,9 @@
-<script src="/test.js"></script>
-
 tchatroomApp = angular.module('tchatroomApp',[]);
 
-var socket = io('52.79.81.243:5003');
-
 tchatroomApp.controller('tchatroomCtrl',['$scope', function($scope, ChatService){
+
+    var socket = io('chitchat.zone/chat');
+
     $scope.chatroomid =location.search.substring(1);
     //$scope.chatContent = "";
     console.log($scope.chatroomid);
@@ -12,7 +11,7 @@ tchatroomApp.controller('tchatroomCtrl',['$scope', function($scope, ChatService)
     $scope.sendChat = function(){
         //alert($scope.mychat);
             var result = socket.emit('sendText', $scope.mychat);
-            alert(result);
+            console.log(result);
             // $('#messages').append($('<li>').text($scope.mychat));
             // $('#m').val('');
             return false;
