@@ -30,9 +30,9 @@
     }
     
     form div {
-      display: inline;
-      color: white;
+      display: inline-block;
       width: 10%;
+      color: white;
       margin: 2%;
     }
     
@@ -43,7 +43,7 @@
       margin: 2%;
       border-radius: 10px;
     }
-    
+
     form button {
       width: 13%;
       height: 63%;
@@ -59,6 +59,7 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
+     
     }
     
     #messages li {

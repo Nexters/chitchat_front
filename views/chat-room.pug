@@ -15,12 +15,12 @@ html
   body(ng-app="tchatroomApp", ng-controller="tchatroomCtrl", style="background-color:#E8E8E7;")
     .roomtitle
       span(style="display: table-cell; vertical-align: middle;") {{chatroomid}}
-      ui#messages
+      ul#messages
       form(action='')
         div ????
         input#m(autocomplete="off")
         button Send
 
     script
-      | localStorage.token = !{token};
+       localStorage.token = !{token};
     script(src="js/chatroom/chat-room.js")

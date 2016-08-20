@@ -1,10 +1,24 @@
 
 var tschedularApp = angular.module('tschedularApp', []);
 
-function Drama(dramaid, dramatitle, dramachannel) {
+function Drama(dramaid, airTime, dramatitle, dramachannel, chatrooms, category) {
     this.id = dramaid;
+    this.airTime = airTime;
     this.title = dramatitle;
     this.channel = dramachannel;
+    this.chatrooms = chatrooms;
+    this.category = category;
+}
+
+function User(_id, name, nickname, gender, likeDrama, joinedChatroom, email, birthday){
+    this._id = _id;
+    this.name = name;
+    this.nickname = nickname;
+    this.gender = gender;
+    this.likeDrama = likeDrama;
+    this.joinedChatroom = joinedChatroom;
+    this.email = email;
+    this.birthday = birthday;
 }
 
 
@@ -18,18 +32,11 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.sun = "일";
     $scope.checked = false;
 
-
-
-
-    $scope.dramaid = "";
-    $scope.dramatitle = "";
-    $scope.dramachatrooms = "";
-    $scope.dramacategory = "";
-    $scope.dramaairTimeCurrent = 0;
-    $scope.dramaairTimeFuture = 0;
-    $scope.dramatotalminute = 0; //future - current;
+  
     $scope.day = ""; //현재 요일탭
     $scope.dramalist = [];
+    $scope.popularityList = [];
+    $scope.favoriteList = [];
 
 
     $scope.isLoggedIn = function () {
@@ -40,47 +47,149 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     //nav
     $scope.join = function () {
         $window.location.href = '/auth/facebook';
+        $http({
+            method: "POST",
+            url: "",  // 해당 서버로 요청
+            data: id // 개인 정보
+        }).then(function mySuccess(response) {
+            var data = response.data;
+            for (var a = 0; a < data.length; a++) {
+                var user = new User(); 
+            if (window.localStorage) {
+                    localStorage.setItem("_id", user["_id"]);
+                    localStorage.setItem("fbid", user["fbid"]);
+                    localStorage.setItem("token", user["token"]);
+                    localStorage.setItem("name", user["name"]);
+                    localStorage.setItem("nickname", user["nickname"]);
+                    localStorage.setItem("gender", user["gender"]);
+                    localStorage.setItem("admin", user["admin"]);
+                    localStorage.setItem("likeDrama", user["likeDrama"]); //
+                    localStorage.setItem("joinedChatroom", user["joinedChatroom"]);//
+                    localStorage.setItem("email", user["email"]);
+                    localStorage.setItem("birthday", user["birthday"]);
+                    localStorage.setItem("reported", user["reported"]);//
+                }
+            }
+        }, function myError(response) {
+            var errorcode = response.statustext;
+            console.log("error : ".errorcode);
+        });
+
+
     }
 
     $scope.login = function () {
         $window.location.href = '/auth/facebook';
+        $http({
+            method: "POST",
+            url: "",  // 해당 서버로 요청
+           //  data: id // 개인 정보
+        }).then(function mySuccess(response) {
+            var data = response.data;
+            for (var a = 0; a < data.length; a++) {
+                var user = new User();
+            if (window.localStorage) {
+                    localStorage.setItem("_id", user["_id"]);
+                    localStorage.setItem("fbid", user["fbid"]);
+                    localStorage.setItem("token", user["token"]);
+                    localStorage.setItem("name", user["name"]);
+                    localStorage.setItem("nickname", user["nickname"]);
+                    localStorage.setItem("gender", user["gender"]);
+                    localStorage.setItem("admin", user["admin"]);
+                    localStorage.setItem("likeDrama", user["likeDrama"]); //
+                    localStorage.setItem("joinedChatroom", user["joinedChatroom"]);//
+                    localStorage.setItem("email", user["email"]);
+                    localStorage.setItem("birthday", user["birthday"]);
+                    localStorage.setItem("reported", user["reported"]);//
+                }
+            }
+        }, function myError(response) {
+            var errorcode = response.statustext;
+            console.log("error : ".errorcode);
+        });
     }
 
     $scope.logout = function () {
         $window.location.href = '/logout';
+        localStorage.clear();
     }
 
     // content-1
     $scope.backgroundImg = "./img/banner.png";
+    
+    //즐겨찾기
     $scope.favorites = function () {
-        alert("favorites");
+       var _id = localStorage.getItem("_id");
+        $http({
+            method: "GET",
+            url: "/schedular-mon.json", //해당 서버로 요청
+            data: _id//개인 정보
+        }).then(function mySuccess(response) {
+            var data = response.data;
+            for (var a = 0; a < data.length; a++) {
+                var drama = new Drama();
+                drama.id = data[a]["_id"];
+                drama.airTime = data[a]["airTime"];
+                drama.title = data[a]["title"];
+                drama.channel = data[a]["channel"];
+                drama.chatrooms = data[a]["chatrooms"];
+                drama.category = data[a]["category"];
+                $scope.favoriteList.push(drama);
+                $scope.checked = true;
+                console.log($scope.favoriteList);
+            }
+
+        }, function myError(response) {
+            var errorcode = response.statustext;
+            console.log("error : ".errorcode);
+        });
+        
     }
 
     $scope.popularity = function () {
-        alert("popularity");
+
+        $http({
+            method: "GET",
+            url: "/schedular-mon.json", //인기 채팅방 서버로 요청
+        }).then(function mySuccess(response) {
+            var data = response.data;
+            for (var a = 0; a < data.length; a++) {
+                var drama = new Drama();
+                drama.id = data[a]["_id"];
+                drama.airTime = data[a]["airTime"];
+                drama.title = data[a]["title"];
+                drama.channel = data[a]["channel"];
+                drama.chatrooms = data[a]["chatrooms"];
+                drama.category = data[a]["category"];
+                $scope.popularityList.push(drama);
+                $scope.checked = true;
+                console.log($scope.popularityList);
+            }
+
+        }, function myError(response) {
+            var errorcode = response.statustext;
+            console.log("error : ".errorcode);
+        });
+
     }
 
-
+    //인기/즐겨찾기 채널 이동 ->왼쪽
     $scope.content1Left = function () {
+
         alert("left");
     }
-
+    //인기 즐겨찾기 채널 이동 ->오른쪽
     $scope.content1Right = function () {
         alert("right");
     }
-
-
     //chatroom_id
     $scope.chatroomid = "de";
-
-
     //content-2
-
     $scope.openNewWindows = function (chatroom_id) {
 
         // console.log("chatroom_id :"+chatroom_id);
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
-        $window.open('chat-room/?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
+        $window.open('chat-room?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
         //  if (window.sessionStorage) {
         //      sessionStorage.setItem("chatroom_id", id);
         //        sessionStorage.setItem("chatroom_id", id);
