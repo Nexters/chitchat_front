@@ -104,7 +104,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         $http({
             method: "GET",
             url: HOST_URL + "/api/v1/dramas?airtimeStart="
-            + date.toJSON() + '&airtimeEnd='
+            + today.toJSON() + '&airtimeEnd='
             + tomorrow.toJSON()
         }).then(function mySuccess(response) {
             var json = response.data;
