@@ -80,7 +80,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         // console.log("chatroom_id :"+chatroom_id);
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
-        $window.open('chat-room.html?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
+        $window.open('chat-room/?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
         //  if (window.sessionStorage) {
         //      sessionStorage.setItem("chatroom_id", id);
         //        sessionStorage.setItem("chatroom_id", id);
