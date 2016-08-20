@@ -98,22 +98,29 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         var today = new Date();
         var tomorrow = new Date();
-        
+
         tomorrow.setDate(today.getDate() + 1);
-        
+
         $http({
             method: "GET",
             url: HOST_URL + "/api/v1/dramas?airtimeStart="
             + today.toJSON() + '&airtimeEnd='
             + tomorrow.toJSON()
         }).then(function mySuccess(response) {
-            var json = response.data;
-            for (var a = 0; a < json.length; a++) {
-                var drama = new Drama();
-                drama.id = json[a]["_id"];
-                drama.title = json[a]["title"];
-                drama.channel = json[a]["channel"];
-                $scope.dramalist.push(drama);
+            var res = response.data;
+            if (0 === res.status) {
+                var dramas = res.value;
+
+                for (var a = 0; a < dramas.length; a++) {
+                    var drama = new Drama();
+
+                    drama.id = dramas[a]._id;
+                    drama.title = dramas[a].title;
+                    drama.channel = dramas[a].channel;
+
+                    $scope.dramalist.push(drama);
+
+                }
                 $scope.checked = true;
             }
 
