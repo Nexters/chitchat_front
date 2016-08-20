@@ -17,8 +17,9 @@ html
     ul.topnav
       li.notactive
         img.logo(src='./img/main_logo.png', alt='')
-      li.right("ng-click"='join()') 회원가입
-      li.right("ng-click"='login()') 로그인
+      li.right(style='display:hidden', "ng-click"='join()', ng-show="!isLoggedIn()") 회원가입
+      li.right(style='display:hidden', "ng-click"='login()', ng-show="!isLoggedIn()") 로그인
+      li.right(style='display:hidden', "ng-click"='logout()', , ng-show="isLoggedIn()") 로그아웃
     .size("ng-style"="{'background-image':'url({{backgroundImg}})'}")
       .cc-container-group
         .container-1
@@ -90,6 +91,6 @@ html
                   ) 
                     span("ng-hide"="cheked") {{x.title}}
                     input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
-        script(src="js/schedular/tschedular.js")
     script
       | localStorage.token = !{token};
+    script(src="js/schedular/tschedular.js")
