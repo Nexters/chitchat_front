@@ -11,7 +11,6 @@
       width: 100%;
       color: white;
       font-size: 20px;
-      display: table;
       text-align: center;
       margin: 0 auto;
       background: #16699E;
@@ -27,11 +26,12 @@
       bottom: 0;
       height: 9%;
       width: 100%;
+      
     }
     
     form div {
       display: inline-block;
-      width: 10%;
+      width: 5%;
       color: white;
       margin: 2%;
     }
@@ -59,13 +59,14 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
-     
     }
     
     #messages li {
       padding: 5px 10px;
+      color:blue;
     }
     
     #messages li:nth-child(odd) {
       background: #eee;
     }
+

@@ -14,12 +14,13 @@ html
     title CHITCHAT
   body(ng-app="tchatroomApp", ng-controller="tchatroomCtrl", style="background-color:#E8E8E7;")
     .roomtitle
-      span(style="display: table-cell; vertical-align: middle;") {{chatroomid}}
+      span(style="vertical-align: middle;") {{chatroomid}}
+      
       ul#messages
-      form(action='')
+      form()
         div ????
-        input#m(autocomplete="off")
-        button Send
+        input#m(autocomplete="off", ng-model="mychat")
+        button(ng-click="sendChat()") Send
 
     script
       | localStorage.token = !{token};
