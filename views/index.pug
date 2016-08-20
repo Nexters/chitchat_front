@@ -1,8 +1,97 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+    script(src='//code.jquery.com/ui/1.11.4/jquery-ui.min.js')
+
+    link(rel='stylesheet', href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/bootstrap-theme.css')
+    link(rel='stylesheet', href='css/chitchat.css')
+
+    script(src='js/bootstrap.js')
+  body(ng-app='tschedularApp', ng-controller="tschedularCtrl")
+    ul.topnav
+      li.notactive
+        img.logo(src='./img/main_logo.png', alt='')
+      li.right(ng-class='join()') 회원가입
+      li.right(ng-class='login()') 로그인
+    .size(ng-style="{'background-image':'url({{backgroundImg}})'}")
+      .cc-container-group
+        container-1
+          container-1-btn
+            input(type='button', ng-click='favorites()', value='즐겨찾기')
+            input(type='button', ng-click='popularity()', value='인기채팅방')
+          container-1-thumnail
+            div(style='display:inline-block') left
+            div(style='display:inline-block') content
+            div(style='display:inline-block') right
+        .cc-container-group
+          .container-2(data-ng-init="showDramaList()")
+            .container-2-btn
+              ul
+                li
+                  a(ng-click="showDramaList()") {{mon}}
+                li
+                  a(ng-click="showDramaList()") {{tue}}
+                li
+                  a(ng-click="showDramaList()") {{wed}}
+                li
+                  a(ng-click="showDramaList()") {{thu}}
+                li
+                  a(ng-click="showDramaList()") {{fri}}
+                li
+                  a(ng-click="showDramaList()") {{sat}}
+                li
+                  a(ng-click="showDramaList()") {{sun}}
+            hr.border
+            div
+              ul.container-2-time
+                li.title 현재시간 
+                  span(style="float:right")
+                    img(src="./img/main_body_button_left2.png", alt="left", style="width:30%;")
+                li 오후 07:00
+                li 오후 08:00
+                li 오후 09:00
+                  span(style="float:right")
+                    input(type="image", ng-click="test()", ng-src="./img/main_body_button_right2.png", alt="right", style="width:30%;")
+            .wrap
+              .timetable
+                .timetable-row
+                  .timetable-title 111
+                  .timetable-content(
+                    ng-repeat="x in dramalist" 
+                    ng-if="x.channel=='1111'" 
+                    ng-mouseover="cheked=true" 
+                    ng-mouseleave="cheked=false"
+                  ) 
+                    span(ng-hide="cheked") {{x.title}}
+                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
+                .timetable-row
+                  .timetable-title 222
+                  .timetable-content(
+                    ng-repeat="x in dramalist" 
+                    ng-if="x.channel=='2222'" 
+                    ng-mouseover="cheked=true" 
+                    ng-mouseleave="cheked=false"
+                  ) 
+                    span(ng-hide="cheked") {{x.title}}
+                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
+                .timetable-row
+                  .timetable-title 333
+                  .timetable-content(
+                    ng-repeat="x in dramalist" 
+                    ng-if="x.channel=='3333'" 
+                    ng-mouseover="cheked=true" 
+                    ng-mouseleave="cheked=false"
+                  ) 
+                    span(ng-hide="cheked") {{x.title}}
+                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
+    script(src="js/schedular/tschedular.js")
     script
       | localStorage.token = !{token};
+
+    
