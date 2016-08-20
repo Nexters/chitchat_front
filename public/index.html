@@ -1,169 +1,83 @@
 <!DOCTYPE html>
 <html lang="en-US">
-   <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
     <link rel="stylesheet" href="css/chitchat.css">
     <script src="js/bootstrap.js"></script>
- </head>
-<body>
-    <nav class="cc-nav">
-        <ul>
-            <li class="left"><a class="logo"><img src="./img/main_logo.png" alt=""></a></li>
-            <li class="right" ><a href="#contact">{{join}}</a></li>
-            <li class="right" style="padding-right:1%;"><a href="#contact">로그인</a></li>
-        </ul>
-    </nav>
-
-    <div class="cc-container-group">
-        <!--content-1 start-->
-        <div class="container-1">
-            <div class="container-1-btn">
-                <input type="button" class="cc-blue" value="즐겨찾기"/>
-                <input type="button" class="cc-blue" value="인기채팅방"/>
+</head>
+<body ng-app="tschedularApp" ng-controller="tschedularCtrl">
+    <ul class="topnav">
+        <li class="notactive"><img class="logo" src="./img/main_logo.png" alt=""></li>
+        <li class="right" ng-click="join()"> 회원가입</li>
+        <li class="right" ng-click=login()>로그인 </li>
+    </ul>
+    <div class="size" ng-style="{'background-image':'url({{backgroundImg}})'}">
+        <div class="cc-container-group">
+            <div class="container-1">
+                <div class="container-1-btn">
+                    <input type="button" ng-click="favorites()" class="cc-blue" value="즐겨찾기" />
+                    <input type="button" ng-click="popularity()" class="cc-blue" value="인기채팅방" />
+                </div>
+                <div class="container-1-thumnail">
+                    <div style="display:inline-block">left</div>
+                    <div style="display:inline-block">content</div>
+                    <div style="display:inline-block">right</div>
+                </div>
             </div>
-             <div class="container-1-thumnail">
-                <div class="left-arrow">
-                  
-                <!--<input type="button" style="float:left;width:4%;margin-right:2.5%; margin-top:10%;"/>-->
-                <img src="./img/main_body_button_left.png" alt="left_btn"/>
-                <!-- style="float:left;width:4%;margin-right:2.5%; margin-top:10%;" -->
-                </div>    
-   
-                    <div class="thumbnails">
-                        <ul id="a1">
-                           
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                        </ul>
-                   
-                        <ul id="a2">
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
-                            <li>
-                                <div class="img"></div>
-                                <div class="bottom"><input type="button" value="chat" style="float:right; margin:10% 10% 0 0;"></div>
-                            </li>
+            <div class="cc-container-group">
+                <div class="container-2" data-ng-init="showDramaList()">
+                    <div class="container-2-btn">
+                        <ul>
+                            <li><a ng-click="showDramaList()">{{mon}}</a></li>
+                            <li><a ng-click="showDramaList()">{{tue}}</a></li>
+                            <li><a ng-click="showDramaList()">{{wed}}</a></li>
+                            <li><a ng-click="showDramaList()">{{thu}}</a></li>
+                            <li><a ng-click="showDramaList()">{{fri}}</a></li>
+                            <li><a ng-click="showDramaList()">{{sat}}</a></li>
+                            <li><a ng-click="showDramaList()">{{sun}}</a></li>
                         </ul>
                     </div>
-                    
-                <div class="right-arrow">
-                <img id="bt" src="./img/main_body_button_right.png" alt="right_btn"/>
+                    <hr class="border">
+                    <div>
+                        <ul class="container-2-time">
+                            <li class="title">현재시간<span style="float:right"><img src="./img/main_body_button_left2.png" alt="left" style="width:30%;"/></span></li>
+                            <li>오후 07:00</li>
+                            <li>오후 08:00</li>
+                            <li>오후 09:00<span style="float:right"><input type="image" ng-click="test()" ng-src="./img/main_body_button_right2.png" alt="right" style="width:30%;"/></span></li>
+                        </ul>
+                    </div>
+                    <div class="wrap">
+                        <div class="timetable">
+                            <div class="timetable-row">
+                                <div class="timetable-title">111</div>
+                                <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='1111'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                </div>
+                            </div>
+                            <div class="timetable-row">
+                                <div class="timetable-title">222</div>
+                                <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='2222'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                </div>
+                            </div>
+                            <div class="timetable-row">
+                                <div class="timetable-title">333</div>
+                                <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='3333'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                    <script>
-                        var offset = 100;
-                        $("#a2").css("opacity", 0.0);
-                        $("#a2").css("top", -$("#a1").height());
-                        $("#a2").css("left", offset);
-                        
-                        $("#bt").on("click", function() {
-                            
-                            $("#a1").animate({
-                                opacity: 0.0,
-                                left: "-=" + offset
-                            }, 1000, function() {
-                                
-                            }); 
-                            
-                            
-                            $("#a2").animate({
-                                opacity: 1.0,
-                                left: "-=" + offset
-                            }, 1000, function() {
-                                
-                            });
-                             
-                            //$("#a2").position().left = 400;
-                        });  
-                    </script>
-                 </div>
-                       
-          </div> 
-        <!--content-2 start-->
-          <div class="container-2">
-              <div class="container-2-btn">
-                   <ul>
-                        <li><a href="#">월</a></li>
-                        <li><a href="#">화</a></li>
-                        <li><a href="#">수</a></li>
-                        <li><a href="#">목</a></li>
-                        <li><a href="#">금</a></li>
-                        <li><a href="#">토</a></li>
-                        <li><a href="#">일</a></li>
-                  </ul>
-              </div> 
-              <hr class="border">
-              <div>
-                    <ul class="container-2-time">
-                                <li class="title">현재시간<span style="float:right" ><img src="./img/main_body_button_left2.png" alt="left" style="width:30%;"/></span></li>
-                                <li>오후 07:00</li>
-                                <li>오후 08:00</li>
-                                <li>오후 09:00<span style="float:right" ><img src="./img/main_body_button_right2.png" alt="right" style="width:30%;"/></span></li>
-                    </ul>
-             </div>
-            <table class="container-2-timetable" style="border:#BABABB;">
-                       <tbody>
-                        <tr>
-                            <td class="title">sbs</td>
-                            <td >꿈빨로맨스</td>
-                            <td>옥중화</td>
-                            <td>원티드</td>
-                        </tr>
-                        <tr>
-                            <td class="title">kbs1</td>
-                            <td>아이가다섯</td>
-                            <td>여자의 비밀</td>
-                            <td>귀신이 산다</td>
-                        </tr>	
-                        <tr>
-                            <td class="title">kbs2</td>
-                            <td>남자의 주먹</td>
-                            <td>런닝맨</td>
-                            <td>꽃보다청춘</td>
-                        </tr>	
-                       </tbody>
-                </table>
             </div>
-       </div>    
-<script>
-    $('table tbody').sortable({
-        helper: fixWidthHelper
-     })
-        
-    function fixWidthHelper(e, ui) {
-        ui.children().each(function() {
-            $(this).width($(this).width());
-        });
-        return ui;
-    }
-</script>
+            <script src="js/schedular/tschedular.js"></script>
 </body>
+
 </html>

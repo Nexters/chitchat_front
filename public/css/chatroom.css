@@ -4,24 +4,27 @@ html, body, .page, .message-container {
   flex-direction: column;
 }
 
-.message-container, .message-form {
+.chat-container, .chat-form {
     display: flex;
 }
 
-.message-form {
+.chat-form {
   flex:1;
   max-height:136px;
-   background-color: #009688 !important;
-  color: white;
+  background-color: #009688 !important;
+  color: black;
   margin-top:-15px;
 }
 
-.message-list {
-  flex: 1; overflow: auto;
-  margin-top:-1px;
+.chat-form{
+  	background-color:#4db6ac;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-.message-form .input-field input {
+
+.chat-form .input-field input {
  border-color: #FFFFFF;
 }
 
@@ -40,4 +43,11 @@ html, body, .page, .message-container {
 
 .ngn-success {
 	background-color:#4db6ac;
+}
+
+
+
+li {
+  background-color: navajowhite;
+  color:black;
 }

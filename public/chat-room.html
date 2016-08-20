@@ -1,0 +1,24 @@
+<!doctype html>
+<html class="chatroom" style="min-width: 340px" ;>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="css/chat-room.css">
+  <meta name="theme-color" content="#444444">
+  <title>ChITCHAT</title>
+</head>
+
+<body ng-app="tchatroomApp" ng-controller="tchatroomCtrl" style="background-color:#E8E8E7;">
+
+  <div class="roomtitle"><span style="display: table-cell; vertical-align: middle;">{{chatroomid}}</span></div>
+  <ul id="messages"></ul>
+  <form action="">
+    <div>????</div><input id="m" autocomplete="off" /><button>Send</button>
+  </form>
+  <script src="js/chatroom/chat-room.js"></script>
+</body>
+</html>
