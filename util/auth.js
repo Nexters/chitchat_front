@@ -26,11 +26,13 @@ module.exports = function (passport) {
         uri: 'api/v1/users?fbid=' + profile.id,
         json: true
       }).then(function (result) {
+        let promise = null;
+
         if (0 === result.status) {
           // user found, update token
-          return rp({
+          promise = rp({
             method: 'PUT',
-            uri: 'api/v1/users/' + result.value,
+            uri: 'api/v1/users/' + result.value + '/token',
             body: {
               token: accessToken
             },
@@ -38,7 +40,7 @@ module.exports = function (passport) {
           });
         } else if (101 === result.status) {
           // user not found, create user
-          return rp({
+          promise = rp({
             method: 'POST',
             uri: 'api/v1/users',
             form: {
@@ -51,6 +53,10 @@ module.exports = function (passport) {
             json: true
           });
         }
+
+        return promise;
+      }).then(function (result) {
+
       }).catch(function (err) {
 
       })

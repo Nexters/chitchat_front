@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/login_success', function (req, res) { // loginCheck, function (req, res) {
   req.session.accessToken = req.user;
-  res.render('main', { token: String('test') }); // req.user });
+  res.render('index', { token: JSON.stringify(req.user) }); // req.user });
 });
 
 router.get('/logout', function (req, res) {
@@ -19,7 +19,7 @@ router.get('/logout', function (req, res) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { token: JSON.stringify('') });
 });
 
 module.exports = router;
