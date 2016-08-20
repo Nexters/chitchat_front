@@ -1,28 +1,6 @@
-
 var tschedularApp = angular.module('tschedularApp', []);
 
-function Drama(dramaid, airTime, dramatitle, dramachannel, chatrooms, category) {
-    this.id = dramaid;
-    this.airTime = airTime;
-    this.title = dramatitle;
-    this.channel = dramachannel;
-    this.chatrooms = chatrooms;
-    this.category = category;
-}
-
-function User(_id, name, nickname, gender, likeDrama, joinedChatroom, email, birthday){
-    this._id = _id;
-    this.name = name;
-    this.nickname = nickname;
-    this.gender = gender;
-    this.likeDrama = likeDrama;
-    this.joinedChatroom = joinedChatroom;
-    this.email = email;
-    this.birthday = birthday;
-}
-
-
-tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $interval) {
+tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $interval, dramaService, userService) {
     $scope.mon = "월";
     $scope.tue = "화";
     $scope.wed = "수";
@@ -32,7 +10,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.sun = "일";
     $scope.checked = false;
 
-  
+
     $scope.day = ""; //현재 요일탭
     $scope.dramalist = [];
     $scope.popularityList = [];
@@ -47,66 +25,10 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     //nav
     $scope.join = function () {
         $window.location.href = '/auth/facebook';
-        $http({
-            method: "POST",
-            url: "",  // 해당 서버로 요청
-            data: id // 개인 정보
-        }).then(function mySuccess(response) {
-            var data = response.data;
-            for (var a = 0; a < data.length; a++) {
-                var user = new User(); 
-            if (window.localStorage) {
-                    localStorage.setItem("_id", user["_id"]);
-                    localStorage.setItem("fbid", user["fbid"]);
-                    localStorage.setItem("token", user["token"]);
-                    localStorage.setItem("name", user["name"]);
-                    localStorage.setItem("nickname", user["nickname"]);
-                    localStorage.setItem("gender", user["gender"]);
-                    localStorage.setItem("admin", user["admin"]);
-                    localStorage.setItem("likeDrama", user["likeDrama"]); //
-                    localStorage.setItem("joinedChatroom", user["joinedChatroom"]);//
-                    localStorage.setItem("email", user["email"]);
-                    localStorage.setItem("birthday", user["birthday"]);
-                    localStorage.setItem("reported", user["reported"]);//
-                }
-            }
-        }, function myError(response) {
-            var errorcode = response.statustext;
-            console.log("error : ".errorcode);
-        });
-
-
     }
 
     $scope.login = function () {
         $window.location.href = '/auth/facebook';
-        $http({
-            method: "POST",
-            url: "",  // 해당 서버로 요청
-           //  data: id // 개인 정보
-        }).then(function mySuccess(response) {
-            var data = response.data;
-            for (var a = 0; a < data.length; a++) {
-                var user = new User();
-            if (window.localStorage) {
-                    localStorage.setItem("_id", user["_id"]);
-                    localStorage.setItem("fbid", user["fbid"]);
-                    localStorage.setItem("token", user["token"]);
-                    localStorage.setItem("name", user["name"]);
-                    localStorage.setItem("nickname", user["nickname"]);
-                    localStorage.setItem("gender", user["gender"]);
-                    localStorage.setItem("admin", user["admin"]);
-                    localStorage.setItem("likeDrama", user["likeDrama"]); //
-                    localStorage.setItem("joinedChatroom", user["joinedChatroom"]);//
-                    localStorage.setItem("email", user["email"]);
-                    localStorage.setItem("birthday", user["birthday"]);
-                    localStorage.setItem("reported", user["reported"]);//
-                }
-            }
-        }, function myError(response) {
-            var errorcode = response.statustext;
-            console.log("error : ".errorcode);
-        });
     }
 
     $scope.logout = function () {
@@ -116,60 +38,13 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     // content-1
     $scope.backgroundImg = "./img/banner.png";
-    
+
     //즐겨찾기
     $scope.favorites = function () {
-       var _id = localStorage.getItem("_id");
-        $http({
-            method: "GET",
-            url: "/schedular-mon.json", //해당 서버로 요청
-            data: _id//개인 정보
-        }).then(function mySuccess(response) {
-            var data = response.data;
-            for (var a = 0; a < data.length; a++) {
-                var drama = new Drama();
-                drama.id = data[a]["_id"];
-                drama.airTime = data[a]["airTime"];
-                drama.title = data[a]["title"];
-                drama.channel = data[a]["channel"];
-                drama.chatrooms = data[a]["chatrooms"];
-                drama.category = data[a]["category"];
-                $scope.favoriteList.push(drama);
-                $scope.checked = true;
-                console.log($scope.favoriteList);
-            }
-
-        }, function myError(response) {
-            var errorcode = response.statustext;
-            console.log("error : ".errorcode);
-        });
-        
+        var _id = $window.localStorage.getItem("_id");
     }
 
     $scope.popularity = function () {
-
-        $http({
-            method: "GET",
-            url: "/schedular-mon.json", //인기 채팅방 서버로 요청
-        }).then(function mySuccess(response) {
-            var data = response.data;
-            for (var a = 0; a < data.length; a++) {
-                var drama = new Drama();
-                drama.id = data[a]["_id"];
-                drama.airTime = data[a]["airTime"];
-                drama.title = data[a]["title"];
-                drama.channel = data[a]["channel"];
-                drama.chatrooms = data[a]["chatrooms"];
-                drama.category = data[a]["category"];
-                $scope.popularityList.push(drama);
-                $scope.checked = true;
-                console.log($scope.popularityList);
-            }
-
-        }, function myError(response) {
-            var errorcode = response.statustext;
-            console.log("error : ".errorcode);
-        });
 
     }
 
@@ -210,33 +85,16 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         tomorrow.setDate(today.getDate() + 1);
 
-        $http({
-            method: "GET",
-            url: HOST_URL + "/api/v1/dramas?airtimeStart="
-            + today.toJSON() + '&airtimeEnd='
-            + tomorrow.toJSON()
-        }).then(function mySuccess(response) {
-            var res = response.data;
-            if (0 === res.status) {
-                var dramas = res.value;
+        var promise = dramaService.retrieveDramas(today.toJSON(), tomorrow.toJSON());
 
-                for (var a = 0; a < dramas.length; a++) {
-                    var drama = new Drama();
+        promise.then(function (dramas) {
+            $scope.dramalist = dramas;
+            console.log($scope.dramalist);
+            $scope.$apply();
+        }, function () {
 
-                    drama.id = dramas[a]._id;
-                    drama.title = dramas[a].title;
-                    drama.channel = dramas[a].channel;
-
-                    $scope.dramalist.push(drama);
-
-                }
-                $scope.checked = true;
-            }
-
-        }, function myError(response) {
-            var errorcode = response.statustext;
-            console.log("error : ".errorcode);
         });
+
     }//callJson
 
 
