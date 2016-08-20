@@ -38,3 +38,5 @@ jspm_packages
 
 .well-known/*
 !.well-known/index.html
+
+.vscode

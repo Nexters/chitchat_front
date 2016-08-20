@@ -13,40 +13,40 @@ html
     link(rel='stylesheet', href='css/chitchat.css')
 
     script(src='js/bootstrap.js')
-  body(ng-app='tschedularApp', ng-controller="tschedularCtrl")
+  body("ng-app"='tschedularApp', "ng-controller"="tschedularCtrl")
     ul.topnav
       li.notactive
         img.logo(src='./img/main_logo.png', alt='')
-      li.right(ng-class='join()') 회원가입
-      li.right(ng-class='login()') 로그인
-    .size(ng-style="{'background-image':'url({{backgroundImg}})'}")
+      li.right("ng-click"='join()') 회원가입
+      li.right("ng-click"='login()') 로그인
+    .size("ng-style"="{'background-image':'url({{backgroundImg}})'}")
       .cc-container-group
-        container-1
-          container-1-btn
-            input(type='button', ng-click='favorites()', value='즐겨찾기')
-            input(type='button', ng-click='popularity()', value='인기채팅방')
-          container-1-thumnail
+        .container-1
+          .container-1-btn
+            input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기')
+            input.cc-blue(type='button', "ng-click"='popularity()', value='인기채팅방')
+          .container-1-thumnail
             div(style='display:inline-block') left
             div(style='display:inline-block') content
             div(style='display:inline-block') right
         .cc-container-group
-          .container-2(data-ng-init="showDramaList()")
+          .container-2("data-ng-init"="showDramaList()")
             .container-2-btn
               ul
                 li
-                  a(ng-click="showDramaList()") {{mon}}
+                  a("ng-click"="showDramaList()") {{mon}}
                 li
-                  a(ng-click="showDramaList()") {{tue}}
+                  a("ng-click"="showDramaList()") {{tue}}
                 li
-                  a(ng-click="showDramaList()") {{wed}}
+                  a("ng-click"="showDramaList()") {{wed}}
                 li
-                  a(ng-click="showDramaList()") {{thu}}
+                  a("ng-click"="showDramaList()") {{thu}}
                 li
-                  a(ng-click="showDramaList()") {{fri}}
+                  a("ng-click"="showDramaList()") {{fri}}
                 li
-                  a(ng-click="showDramaList()") {{sat}}
+                  a("ng-click"="showDramaList()") {{sat}}
                 li
-                  a(ng-click="showDramaList()") {{sun}}
+                  a("ng-click"="showDramaList()") {{sun}}
             hr.border
             div
               ul.container-2-time
@@ -57,40 +57,40 @@ html
                 li 오후 08:00
                 li 오후 09:00
                   span(style="float:right")
-                    input(type="image", ng-click="test()", ng-src="./img/main_body_button_right2.png", alt="right", style="width:30%;")
+                    input(type="image", "ng-click"="test()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
             .wrap
               .timetable
                 .timetable-row
                   .timetable-title 111
                   .timetable-content(
-                    ng-repeat="x in dramalist" 
-                    ng-if="x.channel=='1111'" 
-                    ng-mouseover="cheked=true" 
-                    ng-mouseleave="cheked=false"
+                    "ng-repeat"="x in dramalist" 
+                    "ng-if"="x.channel=='1111'" 
+                    "ng-mouseover"="cheked=true" 
+                    "ng-mouseleave"="cheked=false"
                   ) 
-                    span(ng-hide="cheked") {{x.title}}
-                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
+                    span("ng-hide"="cheked") {{x.title}}
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
                 .timetable-row
                   .timetable-title 222
                   .timetable-content(
-                    ng-repeat="x in dramalist" 
-                    ng-if="x.channel=='2222'" 
-                    ng-mouseover="cheked=true" 
-                    ng-mouseleave="cheked=false"
+                    "ng-repeat"="x in dramalist" 
+                    "ng-if"="x.channel=='2222'" 
+                    "ng-mouseover"="cheked=true" 
+                    "ng-mouseleave"="cheked=false"
                   ) 
-                    span(ng-hide="cheked") {{x.title}}
-                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
+                    span("ng-hide"="cheked") {{x.title}}
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
                 .timetable-row
                   .timetable-title 333
                   .timetable-content(
-                    ng-repeat="x in dramalist" 
-                    ng-if="x.channel=='3333'" 
-                    ng-mouseover="cheked=true" 
-                    ng-mouseleave="cheked=false"
+                    "ng-repeat"="x in dramalist" 
+                    "ng-if"="x.channel=='3333'" 
+                    "ng-mouseover"="cheked=true" 
+                    "ng-mouseleave"="cheked=false"
                   ) 
-                    span(ng-hide="cheked") {{x.title}}
-                    input(type="button", value="chat", ng-click="openNewWindows(x.id)", ng-show="cheked")
-    script(src="js/schedular/tschedular.js")
+                    span("ng-hide"="cheked") {{x.title}}
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
+        script(src="js/schedular/tschedular.js")
     script
       | localStorage.token = !{token};
 

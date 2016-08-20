@@ -92,8 +92,8 @@ tschedularApp.controller('tschedularCtrl', function($scope, $http, $window, $int
     console.log(date);
 
     $http({
-            method: "POST",
-            url : "schedular-mon.json", //해당 서버로 요청
+            method: "GET",
+            url : "/schedular-mon.json", //해당 서버로 요청
             data : date
         }).then(function mySuccess(response) {
                 var json = response.data;
