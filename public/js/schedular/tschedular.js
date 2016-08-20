@@ -205,14 +205,16 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
             return;
         }
 
-        var d = new Date();
-        var date = d.toJSON();
-        console.log(date);
-
+        var today = new Date();
+        var tomorrow = new Date();
+        
+        tomorrow.setDate(today.getDate() + 1);
+        
         $http({
             method: "GET",
-            url: "/schedular-mon.json", //해당 서버로 요청
-            data: date
+            url: HOST_URL + "/api/v1/dramas?airtimeStart="
+            + today.toJSON() + '&airtimeEnd='
+            + tomorrow.toJSON()
         }).then(function mySuccess(response) {
             var json = response.data;
             for (var a = 0; a < json.length; a++) {
