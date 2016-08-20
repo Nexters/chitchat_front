@@ -99,7 +99,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         var today = new Date();
         var tomorrow = new Date();
         
-        tommorrow.setDate(today.getDate() + 1);
+        tomorrow.setDate(today.getDate() + 1);
         
         $http({
             method: "GET",
