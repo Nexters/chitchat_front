@@ -45,10 +45,10 @@ module.exports = function (passport) {
             method: 'POST',
             uri: url + '/api/v1/users',
             form: {
-              fbid: profile.id,
-              name: profile.name,
-              gender: profile.gender,
-              email: profile.email,
+              fbid: profile._json.id,
+              name: profile._json.last_name + ' ' + profile._json.first_name,
+              gender: profile._json.gender,
+              email: profile._json.email,
               token: accessToken
             },
             json: true
