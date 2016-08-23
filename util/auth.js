@@ -40,7 +40,7 @@ module.exports = function (passport) {
       }).catch(function (err) {
         if (101 === err.error.status) {
           // user not found, create user
-          console.log(err.error);
+          console.log(JSON.stringify(profile));
           return rp({
             method: 'POST',
             uri: url + '/api/v1/users',
@@ -55,7 +55,7 @@ module.exports = function (passport) {
           });
         } else {
           console.log(err.error);
-          throw new Error('unexpected');
+          throw new Error('unexpected error has occured while creating user');
         }
       }).then(function (result) {
         console.log(result);
