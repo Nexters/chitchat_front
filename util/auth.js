@@ -22,7 +22,12 @@ module.exports = function (passport) {
     function (accessToken, refreshToken, profile, done) {
       // todo
       // save accessToke to user table
+      console.log('accessToken: ' + accessToken);
+      console.log('refreshToken: ' + refreshToken);
+      console.log('profile: ' + profile);
+
       rp({
+        method: 'GET',
         uri: 'api/v1/users?fbid=' + profile.id,
         json: true
       }).then(function (result) {
@@ -53,12 +58,12 @@ module.exports = function (passport) {
             json: true
           });
         }
-
+        console.log(result);
         return promise;
       }).then(function (result) {
-
+        console.log(result);
       }).catch(function (err) {
-
+        console.log(err);
       })
 
       done(null, accessToken);
