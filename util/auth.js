@@ -3,6 +3,7 @@
 var FbStrategy = require('passport-facebook').Strategy;
 var authConfig = require('../config/auth');
 var rp = require('request-promise');
+var url = require('../config/url').url;
 
 module.exports = function (passport) {
 
@@ -20,15 +21,10 @@ module.exports = function (passport) {
 
   passport.use(new FbStrategy(authConfig,
     function (accessToken, refreshToken, profile, done) {
-      // todo
       // save accessToke to user table
-      console.log('accessToken: ' + accessToken);
-      console.log('refreshToken: ' + refreshToken);
-      console.log('profile: ' + profile);
-
       rp({
         method: 'GET',
-        uri: 'api/v1/users?fbid=' + profile.id,
+        uri: url + '/api/v1/users?fbid=' + profile.id,
         json: true
       }).then(function (result) {
         let promise = null;
@@ -37,7 +33,7 @@ module.exports = function (passport) {
           // user found, update token
           promise = rp({
             method: 'PUT',
-            uri: 'api/v1/users/' + result.value + '/token',
+            uri: url + '/api/v1/users/' + result.value + '/token',
             body: {
               token: accessToken
             },
@@ -47,7 +43,7 @@ module.exports = function (passport) {
           // user not found, create user
           promise = rp({
             method: 'POST',
-            uri: 'api/v1/users',
+            uri: url + '/api/v1/users',
             form: {
               fbid: profile.id,
               name: profile.name,
