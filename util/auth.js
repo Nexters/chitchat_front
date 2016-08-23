@@ -27,21 +27,21 @@ module.exports = function (passport) {
         uri: url + '/api/v1/users?fbid=' + profile.id,
         json: true
       }).then(function (result) {
-        let promise = null;
-
-        if (0 === result.status) {
-          // user found, update token
-          promise = rp({
-            method: 'PUT',
-            uri: url + '/api/v1/users/' + result.value + '/token',
-            body: {
-              token: accessToken
-            },
-            json: true
-          });
-        } else if (101 === result.status) {
+        console.log(result);
+        // user found, update token
+        return rp({
+          method: 'PUT',
+          uri: url + '/api/v1/users/' + result.value + '/token',
+          body: {
+            token: accessToken
+          },
+          json: true
+        });
+      }).catch(function (err) {
+        if (101 === err.error.status) {
           // user not found, create user
-          promise = rp({
+          console.log(err.error);
+          return rp({
             method: 'POST',
             uri: url + '/api/v1/users',
             form: {
@@ -53,14 +53,15 @@ module.exports = function (passport) {
             },
             json: true
           });
+        } else {
+          console.log(err.error);
+          throw new Error('unexpected');
         }
-        console.log(result);
-        return promise;
       }).then(function (result) {
         console.log(result);
       }).catch(function (err) {
         console.log(err);
-      })
+      });
 
       done(null, accessToken);
     }
