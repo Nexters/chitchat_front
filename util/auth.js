@@ -32,7 +32,7 @@ module.exports = function (passport) {
         return rp({
           method: 'PUT',
           uri: url + '/api/v1/users/' + result.value + '/token',
-          body: {
+          form: {
             token: accessToken
           },
           json: true
