@@ -60,11 +60,11 @@ module.exports = function (passport) {
         }
       }).then(function (result) {
         console.log(result);
+        done(null, accessToken);
       }).catch(function (err) {
         console.log(err);
+        done(err, accessToken);
       });
-
-      done(null, accessToken);
     }
   ));
 }
