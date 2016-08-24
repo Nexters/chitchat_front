@@ -70,7 +70,7 @@ html
                     "ng-mouseleave"="cheked=false"
                   ) 
                     span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0].id)", "ng-show"="cheked")
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
                 .timetable-row
                   .timetable-title 222
                   .timetable-content(
@@ -80,7 +80,7 @@ html
                     "ng-mouseleave"="cheked=false"
                   ) 
                     span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0].id)", "ng-show"="cheked")
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
                 .timetable-row
                   .timetable-title 333
                   .timetable-content(
@@ -90,7 +90,7 @@ html
                     "ng-mouseleave"="cheked=false"
                   ) 
                     span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0].id)", "ng-show"="cheked")
+                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
     script
       | localStorage.token = !{token};
     script(src="js/common/url.js")
