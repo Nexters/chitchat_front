@@ -20,6 +20,7 @@ tschedularApp.service('dramaService', function ($http) {
             ret.id = drama._id;
             ret.title = drama.title;
             ret.channel = drama.channel;
+            ret.chatrooms = drama.chatrooms;
 
             return ret;
           });
