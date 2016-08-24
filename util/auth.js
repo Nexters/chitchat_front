@@ -49,6 +49,7 @@ module.exports = function (passport) {
               name: profile._json.last_name + ' ' + profile._json.first_name,
               gender: profile._json.gender,
               email: profile._json.email,
+              nickname: '',
               token: accessToken
             },
             json: true
