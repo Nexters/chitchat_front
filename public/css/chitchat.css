@@ -1,4 +1,24 @@
 /*----------nav---------------*/
+
+.king {
+    width: 1260px;
+    margin: 0 auto;
+}
+
+.smallking {
+    width: 75%;
+    margin: 0px 12.5% 0px 12.5%;
+}
+
+#bbb{
+    margin: 3% 0 0 0;  
+    height:300px;
+    width: 100%;
+    background-image: url('../img/banner.png');
+    background-repeat:no-repeat;
+    background-size: cover;  
+}
+
 .logo{
  
     bottom:0;
@@ -10,7 +30,7 @@
     margin:70px 10px 0 0;
     border-radius : 13px;
     background-color: #4CAAD8;
-    font-size: 11pt; 
+    font-size: 10pt; 
     width:110px;
 }
 ul.topnav {
@@ -19,7 +39,6 @@ ul.topnav {
     margin: 0;
     padding: 1% 12.5% 0 12.5%;
     overflow: hidden;
-    background-color:lightyellow;
 }
 
 ul.topnav li{
@@ -68,13 +87,14 @@ ul.topnav li.right {float: right;}
 /*------thumnail---------------*/
 
 .size{
-    margin: 3% 0 0 0;  
-    height:450px;
-    background-size: cover;
+
+    
 }
 .cc-container-group{
-     padding: 2% 12.5% 0 12.5%; 
-     background-image: "./img/banner.png";
+    width: 75%;
+    margin: 0px 12.5% 0px 12.5%;
+    padding: 10px 1px 1px 1px; 
+     
 }
 .container-1-btn {
      padding: 0 0 2% 6%;   
@@ -86,17 +106,31 @@ ul.topnav li.right {float: right;}
     text-decoration: none;
     border : 1px solid #2A89C9;
     text-align: center;
-    font-size: 12pt;   
+    font-size: 10pt;   
     padding: 5px 5px;
     width:93px;
     margin-right: 2%;
 }
+
+.cc-right{
+    background-color: #E6EEF4;
+    border:1px solid #E6EEF4;
+    color:black;
+}
 .container-1-thumnail{
     margin-bottom: 30px;
-    height:230px;
+    height:200px;
     width: 100%;
-    background-color: red;
     padding: 0 0 0% 0%;  
+}
+
+.athumbnail {
+    display:inline-block;
+    height:100%;
+    width:20%; 
+    border-radius:16px; 
+    box-shadow:3px 3px 5px grey;
+    margin: 0px 1% 0px 1%;
 }
 
 @media screen and (max-width: 1000px){
@@ -157,14 +191,14 @@ ul.topnav li.right {float: right;}
 }
 
 .container-2-btn li a{
-    font-size: 20pt;
+    font-size: 13pt;
     font-weight: bold;
     color: grey;
     text-decoration: none;
     
 }
 .container-2-btn li a:hover{
-    font-size: 20pt;
+    font-size: 13pt;
     font-weight: bold;
     color: black;
     text-decoration: none;
