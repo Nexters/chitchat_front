@@ -85,7 +85,6 @@ html
                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
               div.width
                   .timetable-content(
-<<<<<<< HEAD
                       "ng-repeat"="x in dramalist" 
                       "ng-if"="x.channel=='111111111111111111111111'" 
                       "ng-mouseover"="cheked=true" 
@@ -120,35 +119,7 @@ html
                       ) 
                       span("ng-hide"="cheked") {{x.title}}
                       input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
-=======
-                    "ng-repeat"="x in dramalist" 
-                    "ng-if"="x.channel=='111111111111111111111111'" 
-                    "ng-mouseover"="cheked=true" 
-                    "ng-mouseleave"="cheked=false"
-                  ) 
-                    span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
-                .timetable-row
-                  .timetable-title 222
-                  .timetable-content(
-                    "ng-repeat"="x in dramalist" 
-                    "ng-if"="x.channel=='2222'" 
-                    "ng-mouseover"="cheked=true" 
-                    "ng-mouseleave"="cheked=false"
-                  ) 
-                    span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
-                .timetable-row
-                  .timetable-title 333
-                  .timetable-content(
-                    "ng-repeat"="x in dramalist" 
-                    "ng-if"="x.channel=='3333'" 
-                    "ng-mouseover"="cheked=true" 
-                    "ng-mouseleave"="cheked=false"
-                  ) 
-                    span("ng-hide"="cheked") {{x.title}}
-                    input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0])", "ng-show"="cheked")
->>>>>>> c75bf05bd45b1e25319cae4d97843c25c8e26dc2
+
     script
       | localStorage.token = !{token};
     script(src="js/common/url.js")
