@@ -10,12 +10,23 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.sun = "일";
     $scope.checked = false;
 
+    $scope.kbs1="kbs1";
+    $scope.kbs2="kbs2";
+    $scope.mbc="mbc";
+    $scope.mnet="mnet";
+    $scope.ocn="ocn";
+    $scope.sbs="sbs";
+    $scope.tvn="tvn";
+
 
     $scope.day = ""; //현재 요일탭
     $scope.dramalist = [];
     $scope.popularityList = [];
     $scope.favoriteList = [];
 
+
+// ng-repeat="x in popularityList",
+// src='/img/main_{{x.title}}',
 
     $scope.isLoggedIn = function () {
         // 토큰이 저장되어 있으면 true
@@ -57,6 +68,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.content1Right = function () {
         alert("right");
     }
+
+
     //chatroom_id
     $scope.chatroomid = "de";
     //content-2
@@ -96,8 +109,48 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }//callJson
 
 
+var d = new Date();
+//$scope.now = d.getHours();
+$scope.now = 18;
+$scope.terms = 0;
+getCurrentHour();
+
+$scope.left1Hour =function(){
+     $scope.now = $scope.now -1;
+     var now = $scope.now;
+        if(now===17){
+            $scope.now = 18;
+        }
+     console.log("시간을 빼보았다 : "+$scope.now);
+     getCurrentHour();
+}
+
+$scope.right1Hour =function(){
+     $scope.now = $scope.now +1;
+
+     var now = $scope.now;
+        if(now >22){
+             $scope.now = 22;
+         }
+
+     console.log("시간을 더해보았다 : "+$scope.now);
+     getCurrentHour();
+}
 
 
+
+function getCurrentHour(){
+    console.log("getCurrentHOur내"+$scope.now);
+   
+    if($scope.now >= 23){
+      $scope.now = 22;   
+    }else if($scope.now <= 18){
+        $scope.now = 18;
+        
+    }else if($scope.now < 18){
+        $scope.now = 18;
+    }
+};
 
 
 

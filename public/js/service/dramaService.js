@@ -21,6 +21,12 @@ tschedularApp.service('dramaService', function ($http) {
             ret.title = drama.title;
             ret.channel = drama.channel;
 
+            //총시간 추가
+            if(drama.title =="testDrama1"){
+            ret.totaltime = 70;
+            }
+
+            console.log(ret);
             return ret;
           });
 
