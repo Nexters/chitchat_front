@@ -43,7 +43,7 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
 
         });
 
-        socket.on('error', function (msg) {
+        socket.on('errorToCli', function (msg) {
             $('#messages').append($('<li>').text('error occured on socket!: ' + msg));
         });
 

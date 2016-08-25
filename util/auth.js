@@ -32,7 +32,7 @@ module.exports = function (passport) {
         return rp({
           method: 'PUT',
           uri: url + '/api/v1/users/' + result.value + '/token',
-          body: {
+          form: {
             token: accessToken
           },
           json: true
@@ -49,6 +49,7 @@ module.exports = function (passport) {
               name: profile._json.last_name + ' ' + profile._json.first_name,
               gender: profile._json.gender,
               email: profile._json.email,
+              nickname: '',
               token: accessToken
             },
             json: true
@@ -59,11 +60,11 @@ module.exports = function (passport) {
         }
       }).then(function (result) {
         console.log(result);
+        done(null, accessToken);
       }).catch(function (err) {
         console.log(err);
+        done(err, accessToken);
       });
-
-      done(null, accessToken);
     }
   ));
 }

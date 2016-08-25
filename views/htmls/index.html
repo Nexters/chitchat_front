@@ -58,19 +58,19 @@
                             <div class="timetable-row">
                                 <div class="timetable-title">111</div>
                                 <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='111111111111111111111111'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
-                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.chatrooms[0])" ng-show="cheked" />
                                 </div>
                             </div>
                             <div class="timetable-row">
                                 <div class="timetable-title">222</div>
                                 <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='2222'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
-                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.chatrooms[0])" ng-show="cheked" />
                                 </div>
                             </div>
                             <div class="timetable-row">
                                 <div class="timetable-title">333</div>
                                 <div class="timetable-content" ng-repeat="x in dramalist" ng-if="x.channel=='3333'" ng-mouseover="cheked=true" ng-mouseleave="cheked=false"><span ng-hide="cheked">{{x.title}}</span>
-                                    <input type="button" value="chat" ng-click="openNewWindows(x.id)" ng-show="cheked" />
+                                    <input type="button" value="chat" ng-click="openNewWindows(x.chatrooms[0])" ng-show="cheked" />
                                 </div>
                             </div>
                         </div>
