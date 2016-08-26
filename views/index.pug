@@ -28,30 +28,31 @@ html
                 input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기')
                 input.cc-blue.cc-right(type='button', "ng-click"='popularity()', value='인기채팅방')
               .container-1-thumnail
-                div(style='display:inline-block; height:100%;  width:6%; float:left')
-                  img(src="/img/main_body_button_left.png", style="width:40px; margin-top:90px")
-                .athumbnail  
-                  img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
-                  div(style="float:right; margin-right:19.5px; margin-top:5px;")
-                    img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                    img(src="/img/main_mangirl.png", style="width:30px")
-                .athumbnail  
-                  img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
-                  div(style="float:right; margin-right:19.5px; margin-top:5px;")
-                    img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                    img(src="/img/main_mangirl.png", style="width:30px")
-                .athumbnail  
-                  img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
-                  div(style="float:right; margin-right:19.5px; margin-top:5px;")
-                    img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                    img(src="/img/main_mangirl.png", style="width:30px")
-                .athumbnail  
-                  img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
-                  div(style="float:right; margin-right:19.5px; margin-top:5px;")
-                    img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                    img(src="/img/main_mangirl.png", style="width:30px")            
-                div(style='display:inline-block; height:100%; float:right; width:6%')
-                  img(src="/img/main_body_button_right.png", style="width:40px; margin-top:90px;float:right")
+                .thumnail-btn
+                  img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png")
+                .realthumnail
+                    .athumbnail  
+                      img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
+                      div(style="float:right; margin-right:19.5px; margin-top:3px;")
+                        img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
+                        img(src="/img/main_mangirl.png", style="width:30px")
+                    .athumbnail  
+                      img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
+                      div(style="float:right; margin-right:19.5px; margin-top:3px;")
+                        img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
+                        img(src="/img/main_mangirl.png", style="width:30px")
+                    .athumbnail  
+                      img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
+                      div(style="float:right; margin-right:19.5px; margin-top:3px;")
+                        img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
+                        img(src="/img/main_mangirl.png", style="width:30px")
+                    .athumbnail  
+                      img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
+                      div(style="float:right; margin-right:19.5px; margin-top:3px;")
+                        img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
+                        img(src="/img/main_mangirl.png", style="width:30px")      
+                .thumnail-btn
+                  img.thumnail-btn-img(src="/img/main_body_button_right.png")
         .smallking
           div
             .container-2("data-ng-init"="showDramaList()")
