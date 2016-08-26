@@ -26,8 +26,8 @@ html
           .cc-container-group
             .container-1
               .container-1-btn
-                input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기')
-                input.cc-blue.cc-right(type='button', "ng-click"='popularity()', value='인기채팅방')
+                input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기', "ng-class"="!isFav() ? 'cc-right' : ''")
+                input.cc-blue(type='button', "ng-click"='popularity()', value='인기채팅방', "ng-class"="isFav() ? 'cc-right' : ''")
               .container-1-thumnail
                 .thumnail-btn
                   img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png")

@@ -1,22 +1,10 @@
 var tschedularApp = angular.module('tschedularApp', []);
 
 tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $interval, dramaService, userService) {
-    $scope.mon = "월";
-    $scope.tue = "화";
-    $scope.wed = "수";
-    $scope.thu = "목";
-    $scope.fri = "금";
-    $scope.sat = "토";
-    $scope.sun = "일";
     $scope.checked = false;
 
-    $scope.kbs1 = "kbs1";
-    $scope.kbs2 = "kbs2";
-    $scope.mbc = "mbc";
     $scope.mnet = "mnet";
     $scope.ocn = "ocn";
-    $scope.sbs = "sbs";
-    $scope.tvn = "tvn";
     $scope.name = "";
     $scope.nickname ="";
 
@@ -28,6 +16,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     $scope.channelList = [];
     $scope.week = [];
+
+    $scope.isViewingFavorite = false;
 
     // ng-repeat="x in popularityList",
     // src='/img/main_{{x.title}}',
@@ -73,6 +63,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         var promise = userService.getFavorites(token);
         promise.then(function (dramas) {
             $scope.favoriteList = dramas;
+            $window.localStorage.isFav = true;
             $scope.$apply();
         }, function () {
 
@@ -85,6 +76,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         promise.then(function (dramas) {
             $scope.popularityList = dramas;
+            $window.localStorage.isFav = false;
             $scope.$apply();
         }, function () {
 
@@ -185,6 +177,14 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         });
 
     }//callJson
+
+    $scope.isFav = function () {
+        if (false === $scope.isLoggedIn()) {
+            return false;
+        } else {
+            return $window.localStorage.isFav;
+        }
+    }
 
 
     var d = new Date();
@@ -292,10 +292,12 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
                 kr: "일"
             }
         ];
+
+        $scope.isViewingFavorite = $scope.isLoggedIn();
     }
+
+    // 위 함수 선언이랑 같이 가장 아래에 있어야 함
     init();
-
-
 });
 
 
