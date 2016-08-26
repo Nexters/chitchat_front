@@ -95,6 +95,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
     $scope.refreshTruncatedList = function () {
+        $scope.truncatedList = [];
         var sourceList = $scope.isFav() ? $scope.favoriteList : $scope.popularityList;
 
         if ($scope.truncateStartIndex + $scope.truncateSize !== $scope.truncateEndIndex) {
