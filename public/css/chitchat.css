@@ -125,7 +125,7 @@ ul.topnav li.right {float: right;}
     font-size: 10pt;   
     padding: 5px 5px;
     width:93px;
-    margin-right: 2%;
+    margin-right: 1.5%;
 }
 
 .cc-right{
@@ -153,10 +153,12 @@ ul.topnav li.right {float: right;}
     display: inline-block;
     height:auto;
     width:6%;
+    
 }
 
 .thumnail-btn-img{
     width:40px;
+    margin-top:43px;
 }
 
 .left-btn{
