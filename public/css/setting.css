@@ -1,0 +1,103 @@
+/*-------font-family----------*/
+@font-face{
+ font-family:'Godom';
+ font-style:normal;
+ font-weight:50;
+ src:url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'),
+     url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+@font-face{
+ font-family:'Godob';
+ font-style:normal;
+ font-weight:50;
+ src:url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'),
+     url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+
+html, div{
+    font-family: Godom;
+}
+/*----------nav---------------*/
+
+.king {
+    width: 1260px;
+    margin: 0 auto;
+}
+
+.smallking {
+    width: 75%;
+    margin: 0px 12.5% 0px 12.5%;
+}
+
+#bbb{
+    margin: -60px 0 0 0;  
+    height:250px;
+    width: 100%;
+    background-image: url('../img/banner.png');
+    background-repeat:no-repeat;
+    background-size: cover;  
+}
+
+.logo{
+    margin: 60px 0 0 0;
+    width:128px;
+    height:auto;
+ 
+}
+.right{
+    margin:70px 10px 0 0;
+    border-radius : 13px;
+    background-color: #4CAAD8;
+    font-size: 10pt; 
+    width:110px;
+}
+ul.topnav {
+    list-style-type: none;
+    height:130px;
+    padding: 1% 12.5% 0 12.5%;
+    overflow: hidden;
+}
+
+ul.topnav li{
+    float: left;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 5px 20px;
+    text-decoration: none;
+    
+}
+
+ul.topnav li:hover:not(.notactive) {
+    background-color: #2A89C9;
+    border-radius : 13px;
+}
+
+ul.topnav li.right {float: right;
+}
+
+@media screen and (max-width: 900px){
+   li.noactive{
+       width:100%;
+   }
+    ul.topnav li.right,
+    ul.topnav li {float: none;
+    width: 100%;}
+    .right {
+        padding-top : 0;
+        border-radius : 0px;
+        padding:0;
+        margin:0;
+        }
+    ul.topnav{
+        padding:0;
+        height:100%;
+    }
+    ul.topnav li:not(.right){
+        width:100%;
+    }
+    ul.topnav li:hover:not(.notactive) {
+    background-color: #111;
+    border-radius : 0px;}
+}
