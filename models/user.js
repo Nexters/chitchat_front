@@ -14,8 +14,8 @@ var UserSchema = new Schema({
 
   likedDrama: { type: [Schema.Types.ObjectId] },
   joinedChatroom: { type: [Schema.Types.ObjectId] },
-  
-  email: { type: String, unique: true, required: true },
+
+  email: { type: String },
   birthday: { type: Date },
   reported: { type: [Schema.Types.ObjectId] }
 });
