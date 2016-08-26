@@ -23,13 +23,18 @@ router.get('/chat-room', function (req, res) {
   res.render('chat-room', { token: JSON.stringify(token) });
 });
 
+router.get('/setting', function (req, res, next) {
+  let token = null;
+  if (req.session.accessToken) token = req.session.accessToken;
+  res.render('setting', { token: JSON.stringify(token) });
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   let token = null;
   if (req.session.accessToken) token = req.session.accessToken;
   res.render('index', { token: JSON.stringify(token) });
 });
-
 
 
 module.exports = router;

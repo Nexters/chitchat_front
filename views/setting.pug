@@ -1,0 +1,22 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+    script(src='//code.jquery.com/ui/1.11.4/jquery-ui.min.js')
+
+    link(rel='stylesheet', href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/bootstrap-theme.css')
+    link(rel='stylesheet', href='css/chitchat.css')
+
+    script(src='js/bootstrap.js')
+  body("ng-app"='tschedularApp', "ng-controller"="tschedularCtrl")
+    .king
+        ul.topnav
+          li.notactive
+            img.logo(src='./img/main_logo.png', alt='')
+          li.right(style='display:hidden', "ng-click"='join()', ng-show="!isLoggedIn()") 회원가입
+          li.right(style='display:hidden', "ng-click"='login()', ng-show="!isLoggedIn()") 로그인
+          li.right(style='display:hidden', "ng-click"='logout()', , ng-show="isLoggedIn()") 로그아웃
