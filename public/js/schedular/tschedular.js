@@ -10,13 +10,13 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.sun = "일";
     $scope.checked = false;
 
-    $scope.kbs1="kbs1";
-    $scope.kbs2="kbs2";
-    $scope.mbc="mbc";
-    $scope.mnet="mnet";
-    $scope.ocn="ocn";
-    $scope.sbs="sbs";
-    $scope.tvn="tvn";
+    $scope.kbs1 = "kbs1";
+    $scope.kbs2 = "kbs2";
+    $scope.mbc = "mbc";
+    $scope.mnet = "mnet";
+    $scope.ocn = "ocn";
+    $scope.sbs = "sbs";
+    $scope.tvn = "tvn";
 
 
     $scope.day = ""; //현재 요일탭
@@ -25,12 +25,16 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.favoriteList = [];
 
 
-// ng-repeat="x in popularityList",
-// src='/img/main_{{x.title}}',
+    // ng-repeat="x in popularityList",
+    // src='/img/main_{{x.title}}',
+
+    $scope.retrieveToken = function () {
+        return $window.localStorage.token;
+    }
 
     $scope.isLoggedIn = function () {
         // 토큰이 저장되어 있으면 true
-        return $window.localStorage.token !== 'null';
+        return $scope.retrieveToken() !== 'null';
     }
 
     //nav
@@ -52,11 +56,40 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     //즐겨찾기
     $scope.favorites = function () {
-        var _id = $window.localStorage.getItem("_id");
+        var token = $scope.retrieveToken();
+
+        var promise = userService.getFavorites(token);
+        promise.then(function (dramas) {
+            $scope.favoriteList = dramas;
+            $scope.$apply();
+        }, function () {
+
+        });
     }
 
     $scope.popularity = function () {
 
+        var promise = dramaService.getPopularDramas(4);
+
+        promise.then(function (dramas) {
+            $scope.popularityList = dramas;
+            $scope.$apply();
+        }, function () {
+
+        });
+    }
+
+    $scope.retrieveUserInfo = function () {
+        var token = $scope.retrieveToken();
+        userService.retrieveUserID(token).then(function (userID) {
+            userService.retrieveUserInfo(userID).then(function (user) {
+                $window.localStorage.userInfo = user;
+            }, function (err) {
+
+            });
+        }, function (err) {
+
+        });
     }
 
     //인기/즐겨찾기 채널 이동 ->왼쪽
@@ -81,7 +114,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         //  if (window.sessionStorage) {
         //      sessionStorage.setItem("chatroom_id", id);
         //        sessionStorage.setItem("chatroom_id", id);
-        //  } 
+        //  }
 
 
     }
@@ -109,51 +142,55 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }//callJson
 
 
-var d = new Date();
-//$scope.now = d.getHours();
-$scope.now = 18;
-$scope.terms = 0;
-getCurrentHour();
+    var d = new Date();
+    //$scope.now = d.getHours();
+    $scope.now = 18;
+    $scope.terms = 0;
+    getCurrentHour();
 
-$scope.left1Hour =function(){
-     $scope.now = $scope.now -1;
-     var now = $scope.now;
-        if(now===17){
+    $scope.left1Hour = function () {
+        $scope.now = $scope.now - 1;
+        var now = $scope.now;
+        if (now === 17) {
             $scope.now = 18;
         }
-     console.log("시간을 빼보았다 : "+$scope.now);
-     getCurrentHour();
-}
-
-$scope.right1Hour =function(){
-     $scope.now = $scope.now +1;
-
-     var now = $scope.now;
-        if(now >22){
-             $scope.now = 22;
-         }
-
-     console.log("시간을 더해보았다 : "+$scope.now);
-     getCurrentHour();
-}
-
-
-
-function getCurrentHour(){
-    console.log("getCurrentHOur내"+$scope.now);
-   
-    if($scope.now >= 23){
-      $scope.now = 22;   
-    }else if($scope.now <= 18){
-        $scope.now = 18;
-        
-    }else if($scope.now < 18){
-        $scope.now = 18;
+        console.log("시간을 빼보았다 : " + $scope.now);
+        getCurrentHour();
     }
-};
+
+    $scope.right1Hour = function () {
+        $scope.now = $scope.now + 1;
+
+        var now = $scope.now;
+        if (now > 22) {
+            $scope.now = 22;
+        }
+
+        console.log("시간을 더해보았다 : " + $scope.now);
+        getCurrentHour();
+    }
 
 
 
+    function getCurrentHour() {
+        console.log("getCurrentHOur내" + $scope.now);
+
+        if ($scope.now >= 23) {
+            $scope.now = 22;
+        } else if ($scope.now <= 18) {
+            $scope.now = 18;
+
+        } else if ($scope.now < 18) {
+            $scope.now = 18;
+        }
+    };
+
+    function init() {
+        if (true === $scope.isLoggedIn()) {
+            $scope.retrieveUserInfo();
+        }
+    }
+    init();
 });
 
 
