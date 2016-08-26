@@ -90,55 +90,13 @@ html
                           input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
           .wrap
             .timetable
-              .timetable-rows.first-row
+              .timetable-rows("ng-repeat"="channel in channelList", "ng-class"="$first ? 'first-row' : ''")
                 .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
+                  img("ng-src"="{{channel.img}}", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
                         "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='JTBC'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}} size_{{x.totaltime}}"
-                        )
-                        span("ng-hide"="cheked") {{x.title}}
-                        div(ng-show="cheked")
-                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='tvN'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}}"
-                        )
-                        span("ng-hide"="cheked") {{x.title}}
-                        div(ng-show="cheked")
-                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='SBS'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}}"
-                        )
-                        span("ng-hide"="cheked") {{x.title}}
-                        div(ng-show="cheked")
-                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='KBS'"
+                        "ng-if"="x.channel == channel.name"
                         "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}}"

@@ -235,10 +235,30 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         $scope.channelList = [
-            'KBS',
-            'SBS',
-            'JTBC',
-            'tvN'
+            {
+                name: 'MBC',
+                img: '/img/main_mbc.png'
+            },
+            {
+                name: 'KBS1',
+                img: '/img/main_kbs1.png'
+            },
+            {
+                name: 'KBS2',
+                img: '/img/main_kbs2.png'
+            },
+            {
+                name: 'SBS',
+                img: '/img/main_sbs.png'
+            },
+            {
+                name: 'JTBC',
+                img: '/img/main_jtbc.png'
+            },
+            {
+                name: 'tvN',
+                img: '/img/main_tvn.png'
+            }
         ];
     }
     init();
