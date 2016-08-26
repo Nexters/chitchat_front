@@ -56,6 +56,11 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         localStorage.clear();
     }
 
+     $scope.gosetting = function(){
+        $window.location.href = '/setting';
+    }
+
+
     // content-1
     $scope.backgroundImg = "./img/banner.png";
 
@@ -83,6 +88,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         });
     }
+
+  
 
     $scope.retrieveUserInfo = function () {
         var token = $scope.retrieveToken();
