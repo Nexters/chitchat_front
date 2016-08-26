@@ -17,6 +17,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.ocn = "ocn";
     $scope.sbs = "sbs";
     $scope.tvn = "tvn";
+    $scope.name = "";
+    $scope.nickname ="";
 
 
     $scope.day = ""; //현재 요일탭
@@ -87,18 +89,22 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
                 
-                
-                $window.localStorage.setItem('userInfo', user);
-                  //$window.localStorage.setItem('name', user.name);
-                // $window.localStorage.userInfo.name = user.name;
-                // $window.localStorage.userInfo.nickname = user.nickname;
-                // $window.localStorage.userInfo.gender = user.gender;
-                // $window.localStorage.userInfo.admin = user.admin;
-                // $window.localStorage.userInfo.likeDrama = user.likeDrama; //
-                // $window.localStorage.userInfo.joinedChatroom = user.joinedChatroom;//
-                // $window.localStorage.userInfo.email = user.email;
-                // $window.localStorage.userInfo.birthday = user.birthday;
-                // $window.localStorage.userInfo.reported = user.reported;
+
+                //$window.localStorage.setItem('userInfo', user);
+                $window.localStorage.setItem('name', user.name);
+                $window.localStorage.setItem('nickname', user.nickname);
+                $window.localStorage.setItem('gender', user.gender);
+                $window.localStorage.setItem('admin', user.admin);
+                $window.localStorage.setItem('likeDrama', user.likeDrama);
+                $window.localStorage.setItem('joinedChatroom', user.joinedChatroom);
+                $window.localStorage.setItem('email', user.email);
+                $window.localStorage.setItem('birthday', user.birthday);
+                $window.localStorage.setItem('reported', user.reported);
+
+                $scope.name = localStorage.getItem('name');
+                $scope.nickname =localStorage.getItem('nickname');    
+
+
 
             }, function (err) {
 
