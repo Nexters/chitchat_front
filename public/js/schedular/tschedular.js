@@ -87,7 +87,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
                 
-                $window.localStorage.userInfo.setItem('name', user.name);
+                
+                $window.localStorage.setItem('userInfo', user);
                   //$window.localStorage.setItem('name', user.name);
                 // $window.localStorage.userInfo.name = user.name;
                 // $window.localStorage.userInfo.nickname = user.nickname;
