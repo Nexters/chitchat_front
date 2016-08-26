@@ -27,6 +27,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.favoriteList = [];
 
     $scope.channelList = [];
+    $scope.week = [];
 
     // ng-repeat="x in popularityList",
     // src='/img/main_{{x.title}}',
@@ -258,6 +259,37 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
             {
                 name: 'tvN',
                 img: '/img/main_tvn.png'
+            }
+        ];
+
+        $scope.week = [
+            {
+                en: "mon",
+                kr: "월"
+            },
+            {
+                en: "tue",
+                kr: "화"
+            },
+            {
+                en: "wed",
+                kr: "수"
+            },
+            {
+                en: "thu",
+                kr: "목"
+            },
+            {
+                en: "fri",
+                kr: "금"
+            },
+            {
+                en: "sat",
+                kr: "토"
+            },
+            {
+                en: "sun",
+                kr: "일"
             }
         ];
     }

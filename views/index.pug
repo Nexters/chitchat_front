@@ -63,20 +63,8 @@ html
             .container-2("data-ng-init"="showDramaList()")
               .container-2-btn
                 ul
-                  li
-                    a("ng-click"="showDramaList()") {{mon}}
-                  li
-                    a("ng-click"="showDramaList()") {{tue}}
-                  li
-                    a("ng-click"="showDramaList()") {{wed}}
-                  li
-                    a("ng-click"="showDramaList()") {{thu}}
-                  li
-                    a("ng-click"="showDramaList()") {{fri}}
-                  li
-                    a("ng-click"="showDramaList()") {{sat}}
-                  li
-                    a("ng-click"="showDramaList()") {{sun}}
+                  li("ng-repeat"="day in week")
+                    a("ng-click"="showDramaList()") {{day.kr}}
               hr.border
               div
                 ul.container-2-time
