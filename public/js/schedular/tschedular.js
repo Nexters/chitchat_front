@@ -45,6 +45,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.login = function () {
         
         $window.location.href = '/auth/facebook';
+        
+
     }
 
     $scope.logout = function () {
@@ -84,7 +86,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         var token = $scope.retrieveToken();
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
-                var userInfo = new User;
+                $window.localStorage.userInfo = {};
                 $window.localStorage.userInfo.name = user.name;
                 $window.localStorage.userInfo.nickname = user.nickname;
                 $window.localStorage.userInfo.gender = user.gender;
