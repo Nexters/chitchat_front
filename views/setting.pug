@@ -18,3 +18,15 @@ html
           li.notactive
             img.logo(src='./img/main_logo.png', alt='')
           li.right(style='display:hidden', "ng-click"='join()', ng-show="!isLoggedIn()") 오유리님
+    .smallking
+        .info
+            div#myinfo 내 정보
+            div.text 회원정보는 가입하신 페이스북 계정에서 불러온 것으로 변경을 원할 시에는 
+            div.text 페이스북 계정 정보를 수정하고 페이스북 정보 갱신하기 버튼을 눌러주세요.
+            .inputinfo
+                input.normal(placeholder="닉네임")
+                input.normal(placeholder="고유 코드")
+                input.normal(placeholder="이름")
+                input.normal(placeholder="성별")
+                input.xlarge(placeholder="E-mail")
+                input.xlarge(placeholder="관심콘텐츠")     

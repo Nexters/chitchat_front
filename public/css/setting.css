@@ -26,8 +26,12 @@ html, div{
 }
 
 .smallking {
-    width: 75%;
-    margin: 0px 12.5% 0px 12.5%;
+    width: 1260px;
+    margin: 0 auto;
+}
+
+.info{
+    width: 985px;
 }
 
 #bbb{
@@ -40,7 +44,7 @@ html, div{
 }
 
 .logo{
-    margin: 60px 0 0 0;
+    margin: 80px 0 0 0;
     width:128px;
     height:auto;
  
@@ -69,13 +73,17 @@ ul.topnav li{
     
 }
 
+
 ul.topnav li:hover:not(.notactive) {
     background-color: #2A89C9;
     border-radius : 13px;
 }
 
-ul.topnav li.right {float: right;
+ul.topnav li.right {
+    float: right;
+    margin-top : 140px;
 }
+
 
 @media screen and (max-width: 900px){
    li.noactive{
@@ -99,5 +107,45 @@ ul.topnav li.right {float: right;
     }
     ul.topnav li:hover:not(.notactive) {
     background-color: #111;
-    border-radius : 0px;}
+    border-radius : 0px;
+    }
+}
+
+#myinfo {
+    
+    font-family: Godob;
+    font-size: 25pt;
+    margin-bottom: 5px;
+}
+
+.info{
+    padding: 0% 12.5% 0 14.1%;
+    margin-top:20px;
+}
+
+.text{
+    padding-bottom: 5px;
+    font-size: 10pt;
+    width: 430px;
+    word-spacing: -2;
+}
+.inputinfo{
+    display: inline-block;
+}
+
+.normal{
+    display: block;
+    width: 150px;
+    height:40px;
+    margin-bottom: 15px;
+    border-radius: 13px;
+}
+
+.xlarge{
+    display: block;
+    width: 300px;
+    margin-bottom: 15px;
+    height:40px;
+    margin-bottom: 15px;
+    border-radius: 13px;
 }
