@@ -6,7 +6,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.mnet = "mnet";
     $scope.ocn = "ocn";
     $scope.name = "";
-    $scope.nickname ="";
+    $scope.nickname = "";
 
 
     $scope.day = ""; //현재 요일탭
@@ -16,6 +16,12 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     $scope.channelList = [];
     $scope.week = [];
+
+    $scope.truncatedList = [];
+    $scope.truncateStartIndex = 0;
+    $scope.truncateSize = 4;
+    $scope.truncateEndIndex = $scope.truncateStartIndex + $scope.truncateSize;
+
 
     $scope.isViewingFavorite = false;
 
@@ -48,7 +54,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         localStorage.clear();
     }
 
-     $scope.gosetting = function(){
+    $scope.gosetting = function () {
         $window.location.href = '/setting';
     }
 
@@ -58,12 +64,16 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     //즐겨찾기
     $scope.favorites = function () {
+        if (false === $scope.isLoggedIn()) {
+            return alert('로그인을 하셔야 이용하실 수 있습니다.');
+        }
         var token = $scope.retrieveToken();
 
         var promise = userService.getFavorites(token);
         promise.then(function (dramas) {
             $scope.favoriteList = dramas;
             $window.localStorage.isFav = true;
+            $scope.refreshTruncatedList();
             $scope.$apply();
         }, function () {
 
@@ -77,12 +87,39 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         promise.then(function (dramas) {
             $scope.popularityList = dramas;
             $window.localStorage.isFav = false;
+            $scope.refreshTruncatedList();
             $scope.$apply();
         }, function () {
 
         });
     }
 
+    $scope.refreshTruncatedList = function () {
+        var sourceList = $scope.isFav() ? $scope.favoriteList : $scope.popularityList;
+
+        if ($scope.truncateStartIndex + $scope.truncateSize !== $scope.truncateEndIndex) {
+            $scope.truncateEndIndex = $scope.truncateStartIndex + $scope.truncateSize;
+        }
+
+        if ($scope.truncateStartIndex < 0) {
+            $scope.truncatedList = sourceList.slice(0, $scope.truncateEndIndex);
+        } else if ($scope.truncateEndIndex >= sourceList.length) {
+            $scope.truncatedList = sourceList.slice($scope.truncateStartIndex, sourceList.length);
+        } else {
+            $scope.truncatedList = sourceList.slice($scope.truncateStartIndex, $scope.truncateEndIndex);
+        }
+
+        while ($scope.truncatedList.length < $scope.truncateSize) {
+            var defaultDrama = new Drama();
+
+            defaultDrama.id = "";
+            defaultDrama.title = "main_default";
+            defaultDrama.channel = "";
+            defaultDrama.chatrooms = [];
+
+            $scope.truncatedList.push(defaultDrama);
+        }
+    }
 
 
     $scope.retrieveUserInfo = function () {
@@ -103,7 +140,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
                 $window.localStorage.setItem('reported', user.reported);
 
                 $scope.name = localStorage.getItem('name');
-                $scope.nickname =localStorage.getItem('nickname');
+                $scope.nickname = localStorage.getItem('nickname');
 
 
 
@@ -137,11 +174,11 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.getGenderFromChatroom = function (chatroom) {
         switch (chatroom.targetGender) {
             case "male":
-                return "남";
+                return "/img/main_man.png";
             case "female":
-                return "여";
+                return "/img/main_girl.png";
             case "both":
-                return "남여";
+                return "/img/main_mangirl.png";
         }
 
         return "";
@@ -294,6 +331,14 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         ];
 
         $scope.isViewingFavorite = $scope.isLoggedIn();
+
+        if ($scope.isFav()) {
+            $scope.favorites();
+        } else {
+            $scope.popularity();
+        }
+
+        $scope.refreshTruncatedList();
     }
 
     // 위 함수 선언이랑 같이 가장 아래에 있어야 함
