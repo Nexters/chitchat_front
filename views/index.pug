@@ -31,26 +31,26 @@ html
                 .thumnail-btn
                   img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png")
                 .realthumnail
-                    .athumbnail  
+                    .athumbnail
                       img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
                       div(style="float:right; margin-right:19.5px; margin-top:3px;")
                         img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
                         img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail  
+                    .athumbnail
                       img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
                       div(style="float:right; margin-right:19.5px; margin-top:3px;")
                         img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
                         img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail  
+                    .athumbnail
                       img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
                       div(style="float:right; margin-right:19.5px; margin-top:3px;")
                         img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
                         img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail  
+                    .athumbnail
                       img.thumnail( alt='사진', style="height:75%; width:95%;margin:2.5%")
                       div(style="float:right; margin-right:19.5px; margin-top:3px;")
                         img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                        img(src="/img/main_mangirl.png", style="width:30px")      
+                        img(src="/img/main_mangirl.png", style="width:30px")
                 .thumnail-btn
                   img.thumnail-btn-img(src="/img/main_body_button_right.png")
         .smallking
@@ -78,65 +78,65 @@ html
                   li.title 현재시간
                     span(style="float:right")
                       input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
-                      li.time.active 오후 {{now +0 -12}}:00 
-                      li.time 오후 {{now +1 -12}}:00 
+                      li.time.active 오후 {{now +0 -12}}:00
+                      li.time 오후 {{now +1 -12}}:00
                       li.time 오후 {{now +2 -12}}:00
                         span(style="float:right")
                           input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
           .wrap
             .timetable
               .timetable-rows
-                .timetable-title 
+                .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
-                        "ng-repeat"="x in dramalist" 
-                        "ng-if"="x.channel=='111111111111111111111111'" 
-                        "ng-mouseover"="cheked=true" 
+                        "ng-repeat"="x in dramalist"
+                        "ng-if"="x.channel=='111111111111111111111111'"
+                        "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}} size_{{x.totaltime}}"
-                        ) 
+                        )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
+                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
               .timetable-rows
-                .timetable-title 
+                .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
-                        "ng-repeat"="x in dramalist" 
-                        "ng-if"="x.channel=='111111111111111111111111'" 
-                        "ng-mouseover"="cheked=true" 
+                        "ng-repeat"="x in dramalist"
+                        "ng-if"="x.channel=='111111111111111111111111'"
+                        "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}}"
-                        ) 
+                        )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
+                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
               .timetable-rows
-                .timetable-title 
+                .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
-                        "ng-repeat"="x in dramalist" 
-                        "ng-if"="x.channel=='111111111111111111111111'" 
-                        "ng-mouseover"="cheked=true" 
+                        "ng-repeat"="x in dramalist"
+                        "ng-if"="x.channel=='111111111111111111111111'"
+                        "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}}"
-                        ) 
+                        )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
+                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
               .timetable-rows
-                .timetable-title 
+                .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
-                        "ng-repeat"="x in dramalist" 
-                        "ng-if"="x.channel=='111111111111111111111111'" 
-                        "ng-mouseover"="cheked=true" 
+                        "ng-repeat"="x in dramalist"
+                        "ng-if"="x.channel=='111111111111111111111111'"
+                        "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}}"
-                        ) 
+                        )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.id)", "ng-show"="cheked")
+                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
 
     script
       | localStorage.token = !{token};
