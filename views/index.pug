@@ -102,8 +102,8 @@ html
                         "class"="index_{{$index}} size_{{x.totaltime}}"
                         )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")                       
+                        div(ng-show="cheked")
+                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
               .timetable-rows
                 .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
@@ -116,8 +116,8 @@ html
                         "class"="index_{{$index}}"
                         )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")  
+                        div(ng-show="cheked")
+                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
               .timetable-rows
                 .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
@@ -130,8 +130,8 @@ html
                         "class"="index_{{$index}}"
                         )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")  
+                        div(ng-show="cheked")
+                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
               .timetable-rows
                 .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
@@ -144,7 +144,8 @@ html
                         "class"="index_{{$index}}"
                         )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
+                        div(ng-show="cheked")
+                          input(type="button", "ng-repeat"="c in x.chatrooms", ng-value="getGenderFromChatroom(c)", "ng-click"="openNewWindows(c._id)", "ng-if"="filterChatroom(c)")
 
     script
       | localStorage.token = !{token};

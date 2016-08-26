@@ -26,6 +26,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.popularityList = [];
     $scope.favoriteList = [];
 
+    $scope.channelList = [];
 
     // ng-repeat="x in popularityList",
     // src='/img/main_{{x.title}}',
@@ -45,9 +46,9 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
     $scope.login = function () {
-        
+
         $window.location.href = '/auth/facebook';
-        
+
 
     }
 
@@ -89,13 +90,13 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         });
     }
 
-  
+
 
     $scope.retrieveUserInfo = function () {
         var token = $scope.retrieveToken();
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
-                
+
 
                 //$window.localStorage.setItem('userInfo', user);
                 $window.localStorage.setItem('name', user.name);
@@ -109,7 +110,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
                 $window.localStorage.setItem('reported', user.reported);
 
                 $scope.name = localStorage.getItem('name');
-                $scope.nickname =localStorage.getItem('nickname');    
+                $scope.nickname =localStorage.getItem('nickname');
 
 
 
@@ -136,16 +137,30 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.chatroomid = "de";
     //content-2
     $scope.openNewWindows = function (chatroom_id) {
-
-        // console.log("chatroom_id :"+chatroom_id);
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
         $window.open('chat-room?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
-        //  if (window.sessionStorage) {
-        //      sessionStorage.setItem("chatroom_id", id);
-        //        sessionStorage.setItem("chatroom_id", id);
-        //  }
+    }
 
+    $scope.getGenderFromChatroom = function (chatroom) {
+        switch (chatroom.targetGender) {
+            case "male":
+                return "남";
+            case "female":
+                return "여";
+            case "both":
+                return "남여";
+        }
 
+        return "";
+    }
+
+    $scope.filterChatroom = function (chatroom) {
+        if ($scope.isLoggedIn()) {
+            var userGender = $window.localStorage.gender;
+            return chatroom.targetGender === 'both' || chatroom.targetGender === userGender;
+        } else {
+            return chatroom.targetGender === 'both';
+        }
     }
 
     $scope.showDramaList = function () {
@@ -218,10 +233,17 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         if (true === $scope.isLoggedIn()) {
             $scope.retrieveUserInfo();
         }
+
+        $scope.channelList = [
+            'KBS',
+            'SBS',
+            'JTBC',
+            'tvN'
+        ];
     }
     init();
 
- 
+
 });
 
 
