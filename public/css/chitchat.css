@@ -73,7 +73,7 @@ ul.topnav li{
 }
 
 ul.topnav li:hover:not(.notactive) {
-    background-color: #111;
+    background-color: #2A89C9;
     border-radius : 13px;
 }
 
@@ -134,6 +134,19 @@ ul.topnav li.right {float: right;}
     color:black;
 }
 
+.thumnail{
+    border: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.white_box{
+    width:100%;
+    height: 25%;
+    background: white;
+    border-bottom-left-radius:  16px;
+     border-bottom-right-radius:  16px;
+}
 
 
 .thumnail-btn{
@@ -225,7 +238,7 @@ ul.topnav li.right {float: right;}
 }
 
 .container-2-btn li{
-    margin: 9.3px;
+    margin: 9.3px 9px 4px 9.3px;
     display:inline-block;
 }
 
@@ -250,7 +263,7 @@ ul.topnav li.right {float: right;}
      float:left;
      width:100%;
      height:50px;
-     margin:0 0 3% 0; 
+     margin:0 0 20px 0; 
      padding:0;
      background-color: #4CAAD8;
      color:white;
@@ -302,8 +315,10 @@ ul.container-2-time li{
     width:100%;
     text-align: center;
     font-size: 1.4em;
-    margin: 20px 0 0 0;
+    margin: 0 0 0 0;
     padding:0;
+    border: 0.5px solid #BABABB;
+    border-radius: 13px;
 }
 
 div{
@@ -312,9 +327,18 @@ div{
 }
 .timetable-rows{
     width:100%;
-    height:60px;
+    height:55px;
     padding:0;
     margin:0;
+    
+    border: none;
+    border-bottom:0.5px solid #BABABB;
+}
+
+.first-row{
+    border: none;
+    border-bottom:0.5px solid #BABABB;
+
 }
 
 .timetable-title{
@@ -324,9 +348,9 @@ div{
     height:100%;
     padding: 0;
     float: left;
-    border:0.5px solid #BABABB;
     margin: 0 auto;
     padding : 25px;
+     border-right:0.5px solid #BABABB;
 }
 
 div.width{
@@ -343,17 +367,18 @@ div.width{
     float: left;
     width:33.33%;
     height:100%;
-    border:0.5px solid black;
+    border-top: none;
+   
     margin:0;
     margin-left:0;
     color : #565656;
 }
 
 .index_0{
-     background-color: #E6EEF4;
-     border: 1px solid #BABABB;
-     color : #ffffff;
-}
+    background-color: #E6EEF4;
+    color : #ffffff;
+    }
+
 
 
 .size_70{

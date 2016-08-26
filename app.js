@@ -39,7 +39,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/auth', auth(passport));
 
-
 app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
 
 // catch 404 and forward to error handler
