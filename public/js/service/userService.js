@@ -34,12 +34,13 @@ tschedularApp.service('userService', function ($http) {
         url: HOST_URL + "/api/v1/users/" + uid
       }).then(function mySuccess(response) {
 
+        console.log("1"+ret);
         var res = response.data;
         if (0 === res.status) {
           var user = res.value;
 
           var ret = new User();
-
+    
           ret.name = user.name;
           ret.nickname = user.nickname;
           ret.gender = user.gender;

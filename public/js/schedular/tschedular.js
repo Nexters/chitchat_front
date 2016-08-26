@@ -43,6 +43,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
     $scope.login = function () {
+        
         $window.location.href = '/auth/facebook';
     }
 
@@ -83,7 +84,17 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         var token = $scope.retrieveToken();
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
-                $window.localStorage.userInfo = user;
+                var userInfo = new User;
+                $window.localStorage.userInfo.name = user.name;
+                $window.localStorage.userInfo.nickname = user.nickname;
+                $window.localStorage.userInfo.gender = user.gender;
+                $window.localStorage.userInfo.admin = user.admin;
+                $window.localStorage.userInfo.likeDrama = user.likeDrama; //
+                $window.localStorage.userInfo.joinedChatroom = user.joinedChatroom;//
+                $window.localStorage.userInfo.email = user.email;
+                $window.localStorage.userInfo.birthday = user.birthday;
+                $window.localStorage.userInfo.reported = user.reported;
+
             }, function (err) {
 
             });
@@ -191,6 +202,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
     }
     init();
+
+ 
 });
 
 

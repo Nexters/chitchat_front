@@ -1,3 +1,4 @@
+doctype html
 html
   head
     meta(charset="utf-8")
@@ -12,6 +13,7 @@ html
     link(rel='stylesheet', href="css/setting.css")
 
     script(src='js/bootstrap.js')
+    
   body("ng-app"='tschedularApp', "ng-controller"="tschedularCtrl")
     .king
         ul#bbb.topnav 
@@ -24,9 +26,20 @@ html
             div.text 회원정보는 가입하신 페이스북 계정에서 불러온 것으로 변경을 원할 시에는 
             div.text 페이스북 계정 정보를 수정하고 페이스북 정보 갱신하기 버튼을 눌러주세요.
             .inputinfo
-                input.normal(placeholder="닉네임")
+                input.normal(placeholder="닉네임" value="")
                 input.normal(placeholder="고유 코드")
                 input.normal(placeholder="이름")
                 input.normal(placeholder="성별")
                 input.xlarge(placeholder="E-mail")
-                input.xlarge(placeholder="관심콘텐츠")     
+                input.xlarge(placeholder="관심콘텐츠")    
+                
+    script
+     | localStorage.token = !{token};
+    script(src="js/common/url.js")
+    script(src="js/schedular/tschedular.js")
+    script(src="js/model/userModel.js")
+    script(src="js/model/dramaModel.js")
+    script(src="js/service/userService.js")
+    script(src="js/service/dramaService.js")
+    script
+    console.log(userInfo.getItem(nickname))
