@@ -37,7 +37,7 @@ html
                     .white_box
                       div(style="float:right; margin-right:12px; margin-top:10px;")
                         button.imgbutton("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
-                          img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
+                          img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id, drama.title)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
                 .thumnail-btn
                   img.thumnail-btn-img(src="/img/main_body_button_right.png" )
         .smallking
@@ -74,7 +74,7 @@ html
                         span("ng-hide"="cheked") {{x.title}}
                         div(ng-show="cheked")
                           button.imgbutton("ng-repeat"="c in x.chatrooms", "ng-if"="filterChatroom(c)")
-                            img(ng-src="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
+                            img(ng-src="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id , x.title)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
 
     script
       | localStorage.token = !{token};

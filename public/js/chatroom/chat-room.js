@@ -15,7 +15,12 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
 
         console.log(location.search);
 
-        $scope.chatroomid = location.search.substring(1);
+        var paramStr = location.search.substring(1);
+        var params = paramStr.split('&');
+
+        $scope.chatroomid = params[0];
+        $scope.dramaTitle = params[1];
+
         console.log($scope.chatroomid);
 
 

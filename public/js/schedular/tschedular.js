@@ -168,9 +168,9 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     //chatroom_id
     $scope.chatroomid = "de";
     //content-2
-    $scope.openNewWindows = function (chatroom_id) {
+    $scope.openNewWindows = function (chatroom_id, drama) {
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
-        $window.open('chat-room?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
+        $window.open('chat-room?' + chatroom_id + '&' + drama, '', "top=" + top + ",left=" + left + ",width=340,height=600")
     }
 
     $scope.getGenderFromChatroom = function (chatroom) {
