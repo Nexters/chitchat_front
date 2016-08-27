@@ -224,21 +224,16 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
     }
 
-
-    var d = new Date();
-    //$scope.now = d.getHours();
-    $scope.now = 18;
+    $scope.now = 0;
     $scope.terms = 0;
-    getCurrentHour();
 
     $scope.left1Hour = function () {
         $scope.now = $scope.now - 1;
         var now = $scope.now;
-        if (now === 17) {
-            $scope.now = 18;
+        if (now < 0) {
+            $scope.now = 0;
         }
         console.log("시간을 빼보았다 : " + $scope.now);
-        getCurrentHour();
     }
 
     $scope.right1Hour = function () {
@@ -250,23 +245,26 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         console.log("시간을 더해보았다 : " + $scope.now);
-        getCurrentHour();
     }
 
-
-
     function getCurrentHour() {
+        var d = new Date();
+        $scope.now = d.getHours();
+
         console.log("getCurrentHOur내" + $scope.now);
-
-        if ($scope.now >= 23) {
-            $scope.now = 22;
-        } else if ($scope.now <= 18) {
-            $scope.now = 18;
-
-        } else if ($scope.now < 18) {
-            $scope.now = 18;
-        }
     };
+
+    $scope.getHoursString = function (hour) {
+        var ampm = "오전";
+        var hourIn12 = hour;
+
+        if (hour > 12) {
+            ampm = "오후";
+            hourIn12 = hour - 12;
+        }
+
+        return ampm + " " + hourIn12 + ":00";
+    }
 
     function init() {
         if (true === $scope.isLoggedIn()) {
@@ -340,6 +338,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         $scope.refreshTruncatedList();
+
+        getCurrentHour();
     }
 
     // 위 함수 선언이랑 같이 가장 아래에 있어야 함

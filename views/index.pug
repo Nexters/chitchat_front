@@ -46,18 +46,18 @@ html
               .container-2-btn
                 ul
                   li("ng-repeat"="day in week")
-                    a("ng-click"="showDramaList()") {{day.kr}}
+                    a("ng-click"="showDramaList(day.en)") {{day.kr}}
               hr.border
               div
                 ul.container-2-time
-                  li.title 현재시간
-                    span(style="float:right")
-                      input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
-                      li.time.active 오후 {{now +0 -12}}:00
-                      li.time 오후 {{now +1 -12}}:00
-                      li.time 오후 {{now +2 -12}}:00
-                        span(style="float:right")
-                          input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
+                  li.title
+                    span 현재시간
+                  li.arrow
+                    input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
+                  li.time(ng-repeat="i in [0, 1, 2]", ng-class="$first ? 'active' : ''")
+                    span(style="") {{getHoursString(now + i)}}
+                  li.arrow
+                    input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
           .wrap
             .timetable
               .timetable-rows("ng-repeat"="channel in channelList", "ng-class"="$first ? 'first-row' : ''")
