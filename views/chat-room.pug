@@ -14,11 +14,10 @@ html
     title CHITCHAT
   body(ng-app="tchatroomApp", ng-controller="tchatroomCtrl", style="background-color:#E8E8E7;")
     .roomtitle
-      span(style="vertical-align: middle;") {{dramaTitle}}
 
       ul#messages
       form()
-        div ????
+        div
         input#m(autocomplete="off", ng-model="mychat")
         button(ng-click="sendChat()") Send
 
