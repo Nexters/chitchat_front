@@ -375,20 +375,20 @@ div{
 .first-row{
     border: none;
     border-bottom:0.5px solid #BABABB;
-    
+
 
 }
 
 .goodwife{
     background-image: url("../img/thumnail/Concert_7080.png");
     background-repeat:no-repeat;
-    background-size: cover;  
+    background-size: cover;
 }
 
 .fourman{
     background-image: url("../img/thumnail/GayoMudae.png");
     background-repeat:no-repeat;
-    background-size: cover;   
+    background-size: cover;
 }
 
 .timetable-title{
@@ -436,4 +436,9 @@ div.width{
 
 .image_width{
 
+}
+
+.imgbutton {
+    border: 0;
+    background-color: white;
 }
