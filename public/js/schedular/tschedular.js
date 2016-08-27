@@ -110,6 +110,13 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
             $scope.truncatedList = sourceList.slice($scope.truncateStartIndex, $scope.truncateEndIndex);
         }
 
+        $scope.truncatedList = $scope.truncatedList.map(function (e) {
+            if (e.en === null) {
+                e.en = "main_default";
+            }
+            return e;
+        })
+
         while ($scope.truncatedList.length < $scope.truncateSize) {
             var defaultDrama = new Drama();
 
