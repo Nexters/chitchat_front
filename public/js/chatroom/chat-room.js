@@ -4,7 +4,7 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
 
     var socket = io(HOST_URL);
 
-    
+
     $scope.clearText = function () {
         $scope.mychat = "";
     }
@@ -13,8 +13,9 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
         // 변수 초기화
         $scope.clearText();
 
+        console.log(location.search);
+
         $scope.chatroomid = location.search.substring(1);
-        //$scope.chatContent = "";
         console.log($scope.chatroomid);
 
 
@@ -50,7 +51,14 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
         socket.on('newMsg', function (user, msg) {
             console.log(user);
             console.log(msg);
-            $('#messages').append($('<li>').text(msg.message));
+            var text = "stranger: ";
+
+            if (user === localStorage.uid) {
+                text = "me: ";
+            }
+
+            text = text + msg.message;
+            $('#messages').append($('<li>').text(text));
         });
 
         socket.on('joined', function (nickname) {
@@ -78,7 +86,7 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
         socket.emit('getTexts', 0, 100);
     }
 
-    
+
 
     init();
 });
