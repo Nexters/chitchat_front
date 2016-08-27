@@ -112,6 +112,8 @@ ul.topnav li.right {float: right;}
     margin: 0px 12.5% 0px 12.5%;
     padding: 10px 1px 1px 1px;
 }
+
+
 .container-1-btn {
      padding: 0 0 2% 6%;
 }
@@ -178,6 +180,8 @@ ul.topnav li.right {float: right;}
     padding: 0 0 0% 0%;
 }
 
+
+
 .athumbnail {
     display:inline-block;
     height:100%;
@@ -186,6 +190,12 @@ ul.topnav li.right {float: right;}
     box-shadow:3px 3px 5px grey;
     margin: 0px 2% 0px 0%;
 }
+
+
+.displayinlineblock{
+    display: inline-block;
+}
+
 
 @media screen and (max-width: 1000px){
     .cc-container-group{
@@ -224,6 +234,7 @@ ul.topnav li.right {float: right;}
     .size{
         padding : 0;
         margin:0;
+
     }
     .cc-blue{
         border-radius: 0;
@@ -261,6 +272,11 @@ ul.topnav li.right {float: right;}
     width:100%;
 }
 
+.timetablediv{
+    width:100%;
+}
+
+
 .container-2-time{
      float:left;
      width:100%;
@@ -272,6 +288,7 @@ ul.topnav li.right {float: right;}
      border-radius: 20px;
      align-items: center;
 }
+
 
 
 /*---------------ul.container-2-time--------------*/
