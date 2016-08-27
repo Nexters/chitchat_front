@@ -1,31 +1,28 @@
 var tschedularApp = angular.module('tschedularApp', []);
 
 tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $interval, dramaService, userService) {
-    $scope.mon = "월";
-    $scope.tue = "화";
-    $scope.wed = "수";
-    $scope.thu = "목";
-    $scope.fri = "금";
-    $scope.sat = "토";
-    $scope.sun = "일";
     $scope.checked = false;
 
-    $scope.kbs1 = "kbs1";
-    $scope.kbs2 = "kbs2";
-    $scope.mbc = "mbc";
     $scope.mnet = "mnet";
     $scope.ocn = "ocn";
-    $scope.sbs = "sbs";
-    $scope.tvn = "tvn";
     $scope.name = "";
-    $scope.nickname ="";
-   
+    $scope.nickname = "";
 
     $scope.day = ""; //현재 요일탭
     $scope.dramalist = [];
     $scope.popularityList = [];
     $scope.favoriteList = [];
-    console.log("로컬에서 실행하고 있다네");
+
+    $scope.channelList = [];
+    $scope.week = [];
+
+    $scope.truncatedList = [];
+    $scope.truncateStartIndex = 0;
+    $scope.truncateSize = 4;
+    $scope.truncateEndIndex = $scope.truncateStartIndex + $scope.truncateSize;
+
+
+    $scope.isViewingFavorite = false;
 
     // ng-repeat="x in popularityList",
     // src='/img/main_{{x.title}}',
@@ -45,9 +42,9 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
     $scope.login = function () {
-        
+
         $window.location.href = '/auth/facebook';
-        
+
 
     }
 
@@ -56,8 +53,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         localStorage.clear();
     }
 
-     $scope.gosetting = function(){
-          
+    $scope.gosetting = function () {
         $window.location.href = '/setting';
     }
 
@@ -67,12 +63,17 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     //즐겨찾기
     $scope.favorites = function () {
+        if (false === $scope.isLoggedIn()) {
+            return alert('로그인을 하셔야 이용하실 수 있습니다.');
+        }
         var token = $scope.retrieveToken();
 
         var promise = userService.getFavorites(token);
         promise.then(function (dramas) {
             $scope.favoriteList = dramas;
             console.log("favorite"+$scope.favoriteList);
+            $window.localStorage.isFav = true;
+            $scope.refreshTruncatedList();
             $scope.$apply();
         }, function () {
 
@@ -85,19 +86,48 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         promise.then(function (dramas) {
             $scope.popularityList = dramas;
+            $window.localStorage.isFav = false;
+            $scope.refreshTruncatedList();
             $scope.$apply();
         }, function () {
 
         });
     }
 
-  
+    $scope.refreshTruncatedList = function () {
+        $scope.truncatedList = [];
+        var sourceList = $scope.isFav() ? $scope.favoriteList : $scope.popularityList;
+
+        if ($scope.truncateStartIndex + $scope.truncateSize !== $scope.truncateEndIndex) {
+            $scope.truncateEndIndex = $scope.truncateStartIndex + $scope.truncateSize;
+        }
+
+        if ($scope.truncateStartIndex < 0) {
+            $scope.truncatedList = sourceList.slice(0, $scope.truncateEndIndex);
+        } else if ($scope.truncateEndIndex >= sourceList.length) {
+            $scope.truncatedList = sourceList.slice($scope.truncateStartIndex, sourceList.length);
+        } else {
+            $scope.truncatedList = sourceList.slice($scope.truncateStartIndex, $scope.truncateEndIndex);
+        }
+
+        while ($scope.truncatedList.length < $scope.truncateSize) {
+            var defaultDrama = new Drama();
+
+            defaultDrama.id = "";
+            defaultDrama.title = "main_default";
+            defaultDrama.channel = "";
+            defaultDrama.chatrooms = [];
+
+            $scope.truncatedList.push(defaultDrama);
+        }
+    }
+
 
     $scope.retrieveUserInfo = function () {
         var token = $scope.retrieveToken();
         userService.retrieveUserID(token).then(function (userID) {
             userService.retrieveUserInfo(userID).then(function (user) {
-                
+
 
                 //$window.localStorage.setItem('userInfo', user);
                 $window.localStorage.setItem('name', user.name);
@@ -111,7 +141,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
                 $window.localStorage.setItem('reported', user.reported);
 
                 $scope.name = localStorage.getItem('name');
-                $scope.nickname =localStorage.getItem('nickname');    
+                $scope.nickname = localStorage.getItem('nickname');
 
 
 
@@ -138,16 +168,30 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.chatroomid = "de";
     //content-2
     $scope.openNewWindows = function (chatroom_id) {
-
-        // console.log("chatroom_id :"+chatroom_id);
         var left = screen.width / 2 - 300, top = screen.height / 2 - 350
         $window.open('chat-room?' + chatroom_id, '', "top=" + top + ",left=" + left + ",width=340,height=600")
-        //  if (window.sessionStorage) {
-        //      sessionStorage.setItem("chatroom_id", id);
-        //        sessionStorage.setItem("chatroom_id", id);
-        //  }
+    }
 
+    $scope.getGenderFromChatroom = function (chatroom) {
+        switch (chatroom.targetGender) {
+            case "male":
+                return "/img/main_man.png";
+            case "female":
+                return "/img/main_girl.png";
+            case "both":
+                return "/img/main_mangirl.png";
+        }
 
+        return "";
+    }
+
+    $scope.filterChatroom = function (chatroom) {
+        if ($scope.isLoggedIn()) {
+            var userGender = $window.localStorage.gender;
+            return chatroom.targetGender === 'both' || chatroom.targetGender === userGender;
+        } else {
+            return chatroom.targetGender === 'both';
+        }
     }
 
     $scope.showDramaList = function () {
@@ -172,21 +216,24 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
     }//callJson
 
+    $scope.isFav = function () {
+        if (false === $scope.isLoggedIn()) {
+            return false;
+        } else {
+            return $window.localStorage.isFav;
+        }
+    }
 
-    var d = new Date();
-    //$scope.now = d.getHours();
-    $scope.now = 18;
+    $scope.now = 0;
     $scope.terms = 0;
-    getCurrentHour();
 
     $scope.left1Hour = function () {
         $scope.now = $scope.now - 1;
         var now = $scope.now;
-        if (now === 17) {
-            $scope.now = 18;
+        if (now < 0) {
+            $scope.now = 0;
         }
         console.log("시간을 빼보았다 : " + $scope.now);
-        getCurrentHour();
     }
 
     $scope.right1Hour = function () {
@@ -198,32 +245,105 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         console.log("시간을 더해보았다 : " + $scope.now);
-        getCurrentHour();
     }
 
-
-
     function getCurrentHour() {
+        var d = new Date();
+        $scope.now = d.getHours();
+
         console.log("getCurrentHOur내" + $scope.now);
-
-        if ($scope.now >= 23) {
-            $scope.now = 22;
-        } else if ($scope.now <= 18) {
-            $scope.now = 18;
-
-        } else if ($scope.now < 18) {
-            $scope.now = 18;
-        }
     };
+
+    $scope.getHoursString = function (hour) {
+        var ampm = "오전";
+        var hourIn12 = hour;
+
+        if (hour > 12) {
+            ampm = "오후";
+            hourIn12 = hour - 12;
+        }
+
+        return ampm + " " + hourIn12 + ":00";
+    }
 
     function init() {
         if (true === $scope.isLoggedIn()) {
             $scope.retrieveUserInfo();
         }
-    }
-    init();
 
- 
+        $scope.channelList = [
+            {
+                name: 'MBC',
+                img: '/img/main_mbc.png'
+            },
+            {
+                name: 'KBS1',
+                img: '/img/main_kbs1.png'
+            },
+            {
+                name: 'KBS2',
+                img: '/img/main_kbs2.png'
+            },
+            {
+                name: 'SBS',
+                img: '/img/main_sbs.png'
+            },
+            {
+                name: 'JTBC',
+                img: '/img/main_jtbc.png'
+            },
+            {
+                name: 'tvN',
+                img: '/img/main_tvn.png'
+            }
+        ];
+
+        $scope.week = [
+            {
+                en: "mon",
+                kr: "월"
+            },
+            {
+                en: "tue",
+                kr: "화"
+            },
+            {
+                en: "wed",
+                kr: "수"
+            },
+            {
+                en: "thu",
+                kr: "목"
+            },
+            {
+                en: "fri",
+                kr: "금"
+            },
+            {
+                en: "sat",
+                kr: "토"
+            },
+            {
+                en: "sun",
+                kr: "일"
+            }
+        ];
+
+        $scope.isViewingFavorite = $scope.isLoggedIn();
+
+        if ($scope.isFav()) {
+            $scope.favorites();
+        } else {
+            $scope.popularity();
+        }
+
+        $scope.refreshTruncatedList();
+
+        getCurrentHour();
+    }
+
+    // 위 함수 선언이랑 같이 가장 아래에 있어야 함
+    init();
 });
 
 

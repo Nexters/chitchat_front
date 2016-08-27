@@ -26,18 +26,18 @@ html
           .cc-container-group
             .container-1
               .container-1-btn
-                input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기')
-                input.cc-blue.cc-right(type='button', "ng-click"='popularity()', value='인기채팅방')
+                input.cc-blue(type='button', "ng-click"='favorites()', value='즐겨찾기', "ng-class"="!isFav() ? 'cc-right' : ''")
+                input.cc-blue(type='button', "ng-click"='popularity()', value='인기채팅방', "ng-class"="isFav() ? 'cc-right' : ''")
               .container-1-thumnail
                 .thumnail-btn
                   img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" style="float:left")
                 .realthumnail
-                    .athumbnail(ng-repeat="x in favoriteList")
-                      div.thumnail(  ng-class="{'goodwife':x.title=='굿와이프','fourman':x.title=='신데렐라와 네명의 기사'}" style="height:75%; width:100%;")
+                    .athumbnail("ng-repeat"="drama in truncatedList")
+                      img.thumnail( "ng-src"="/img/{{drama.title}}.png" alt='사진', style="height:75%; width:100%;")
                       .white_box
                         div(style="float:right; margin-right:12px; margin-top:10px;")
-                          img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                          img(src="/img/main_mangirl.png", style="width:30px")
+                          button("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
+                            img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
                 .thumnail-btn
                   img.thumnail-btn-img(src="/img/main_body_button_right.png" style="float:right")
         .smallking
@@ -45,92 +45,36 @@ html
             .container-2("data-ng-init"="showDramaList()")
               .container-2-btn
                 ul
-                  li
-                    a("ng-click"="showDramaList()") {{mon}}
-                  li
-                    a("ng-click"="showDramaList()") {{tue}}
-                  li
-                    a("ng-click"="showDramaList()") {{wed}}
-                  li
-                    a("ng-click"="showDramaList()") {{thu}}
-                  li
-                    a("ng-click"="showDramaList()") {{fri}}
-                  li
-                    a("ng-click"="showDramaList()") {{sat}}
-                  li
-                    a("ng-click"="showDramaList()") {{sun}}
+                  li("ng-repeat"="day in week")
+                    a("ng-click"="showDramaList(day.en)") {{day.kr}}
               hr.border
               div
                 ul.container-2-time
-                  li.title 현재시간
-                    span(style="float:right")
-                      input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
-                      li.time.active 오후 {{now +0 -12}}:00
-                      li.time 오후 {{now +1 -12}}:00
-                      li.time 오후 {{now +2 -12}}:00
-                        span(style="float:right")
-                          input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
+                  li.title
+                    span 현재시간
+                  li.arrow
+                    input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
+                  li.time(ng-repeat="i in [0, 1, 2]", ng-class="$first ? 'active' : ''")
+                    span(style="") {{getHoursString(now + i)}}
+                  li.arrow
+                    input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
           .wrap
             .timetable
-              .timetable-rows.first-row
+              .timetable-rows("ng-repeat"="channel in channelList", "ng-class"="$first ? 'first-row' : ''")
                 .timetable-title
-                  img(src="/img/main_jtbc.png", alt="Smiley face", height="25px",width="60px", )
+                  img("ng-src"="{{channel.img}}", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
                 div.width
                     .timetable-content(
                         "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='JTBC'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}} size_{{x.totaltime}}"
-                        )
-                        span("ng-show"="cheked") 채팅하러 가기 >
-                        span.center("ng-hide"="cheked" ) {{x.title}}
-                        .div("ng-show"="cheked" style="display:inline-block")
-                          input(type="image", value="여", style="width:30px; margin-right:5px;margin-left:10px; margin-top:10px" , src="../img/main_man.png", "ng-click"="openNewWindows(x.chatrooms[0]._id)")
-                          input(type="image", value="남여", style="width:30px;margin-top:10px", src="../img/main_mangirl.png", "ng-click"="openNewWindows(x.chatrooms[0]._id)") 
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="25px",width="60px", )
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='tvN'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}} size_{{x.totaltime}}"
-                        )
-                        span.center("ng-hide"="cheked") {{x.title}}
-                        .div( "ng-show"="cheked")
-                          span("ng-show"="cheked") 채팅하러 가기 >
-                          input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)")
-                          input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)") 
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='SBS'"
+                        "ng-if"="x.channel == channel.name"
                         "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}}"
                         )
                         span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")  
-              .timetable-rows
-                .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
-                div.width
-                    .timetable-content(
-                        "ng-repeat"="x in dramalist"
-                        "ng-if"="x.channel=='KBS'"
-                        "ng-mouseover"="cheked=true"
-                        "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}}"
-                        )
-                        span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="chat", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
+                        div(ng-show="cheked")
+                          button("ng-repeat"="c in x.chatrooms", "ng-if"="filterChatroom(c)")
+                            img(ng-src="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
 
     script
       | localStorage.token = !{token};
