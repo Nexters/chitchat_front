@@ -29,8 +29,12 @@ tchatroomApp.controller('tchatroomCtrl', function ($scope, $window) {
             for (t of texts) {
 
                 console.log(t);
+                var sender = "stranger";
+                if (localStorage.uid === t.uid._id) {
+                    sender = "me";
+                }
 
-                $('#messages').append($('<li>').text(t.uid.nickname + ': ' + t.message));
+                $('#messages').append($('<li>').text(sender + ': ' + t.message));
             }
             $('#messages').append($('<li>').text('-----------------------'));
         });
