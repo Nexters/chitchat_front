@@ -114,7 +114,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
             var defaultDrama = new Drama();
 
             defaultDrama.id = "";
-            defaultDrama.title = "main_default";
+            defaultDrama.en = "main_default";
             defaultDrama.channel = "";
             defaultDrama.chatrooms = [];
 

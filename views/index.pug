@@ -33,7 +33,7 @@ html
                   img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" )
                 .realthumnail
                   .athumbnail("ng-repeat"="drama in truncatedList")
-                    img.thumnail( "ng-src"="/img/{{drama.title}}.png" alt='사진', style="height:75%; width:100%;")
+                    img.thumnail( "ng-src"="/img/thumnail/{{drama.en}}.png" alt='사진', style="height:75%; width:100%;")
                     .white_box
                       div(style="float:right; margin-right:12px; margin-top:10px;")
                         button.imgbutton("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
