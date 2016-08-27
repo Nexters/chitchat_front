@@ -30,7 +30,7 @@ html
                 input.cc-blue(type='button', "ng-click"='popularity()', value='인기채팅방', "ng-class"="isFav() ? 'cc-right' : ''")
               .container-1-thumnail
                 .thumnail-btn
-                  img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" style="float:left")
+                  img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" )
                 .realthumnail
                     .athumbnail("ng-repeat"="drama in truncatedList")
                       img.thumnail( "ng-src"="/img/{{drama.title}}.png" alt='사진', style="height:75%; width:100%;")
@@ -39,7 +39,7 @@ html
                           button("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
                             img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
                 .thumnail-btn
-                  img.thumnail-btn-img(src="/img/main_body_button_right.png" style="float:right")
+                  img.thumnail-btn-img(src="/img/main_body_button_right.png" )
         .smallking
           div
             .container-2("data-ng-init"="showDramaList()")
@@ -47,17 +47,17 @@ html
                 ul
                   li("ng-repeat"="day in week")
                     a("ng-click"="showDramaList(day.en)") {{day.kr}}
-              hr.border
-              div
-                ul.container-2-time
-                  li.title
-                    span 현재시간
-                  li.arrow
-                    input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
-                  li.time(ng-repeat="i in [0, 1, 2]", ng-class="$first ? 'active' : ''")
-                    span(style="") {{getHoursString(now + i)}}
-                  li.arrow
-                    input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
+          hr.border
+          div
+            ul.container-2-time
+              li.title
+                span 현재시간
+              li.arrow
+                input(type="image", "ng-click"="left1Hour()", "ng-src"="./img/main_body_button_left2.png", alt="left", style="width:30%;")
+              li.time(ng-repeat="i in [0, 1, 2]", ng-class="$first ? 'active' : ''")
+                span(style="") {{getHoursString(now + i)}}
+              li.arrow
+                input(type="image", "ng-click"="right1Hour()", "ng-src"="./img/main_body_button_right2.png", alt="right", style="width:30%;")
           .wrap
             .timetable
               .timetable-rows("ng-repeat"="channel in channelList", "ng-class"="$first ? 'first-row' : ''")
