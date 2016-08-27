@@ -13,13 +13,12 @@ html
     meta(name='theme-color', content='$444444')
     title CHITCHAT
   body(ng-app="tchatroomApp", ng-controller="tchatroomCtrl", style="background-color:#E8E8E7;")
-    .roomtitle
 
-      ul#messages
-      form()
-        div
-        input#m(autocomplete="off", ng-model="mychat")
-        button(ng-click="sendChat()") Send
+    ul#messages
+    form()
+      div
+      input#m(autocomplete="off", ng-model="mychat")
+      button(ng-click="sendChat()") Send
 
     script
       | localStorage.token = !{token};
