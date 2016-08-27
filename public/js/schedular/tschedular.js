@@ -111,7 +111,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         $scope.truncatedList = $scope.truncatedList.map(function (e) {
-            if (e.en === null) {
+            if (e.en === undefined) {
                 e.en = "main_default";
             }
             return e;
