@@ -131,11 +131,12 @@ ul.topnav li.right {
 }
 .inputinfo{
     display: inline-block;
+    margin-top: 40px;
 }
 
 .normal{
     display: block;
-    width: 150px;
+    width: 200px;
     height:40px;
     margin-bottom: 15px;
     border-radius: 13px;
@@ -143,9 +144,26 @@ ul.topnav li.right {
 
 .xlarge{
     display: block;
-    width: 300px;
+    width: 430px;
     margin-bottom: 15px;
     height:40px;
     margin-bottom: 15px;
     border-radius: 13px;
+}
+
+input {
+  padding: 7px;
+  -webkit-box-shadow: inset 0px 0px 0px 0px #dddddd;
+  -moz-box-shadow: inset 2px 2px 2px 0px #dddddd;
+  box-shadow: inset 0px 0px 0px 0px #dddddd;
+  border: 1px solid #BABABB;
+}
+
+.setting_btn{
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #E0E0DF;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    
 }

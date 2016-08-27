@@ -30,34 +30,16 @@ html
                 input.cc-blue.cc-right(type='button', "ng-click"='popularity()', value='인기채팅방')
               .container-1-thumnail
                 .thumnail-btn
-                  img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png")
+                  img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" style="float:left")
                 .realthumnail
-                    .athumbnail
-                      img.thumnail( src="/img/main_default.png" alt='사진', style="height:75%; width:100%;")
+                    .athumbnail(ng-repeat="x in favoriteList")
+                      div.thumnail(  ng-class="{'goodwife':x.title=='굿와이프','fourman':x.title=='신데렐라와 네명의 기사'}" style="height:75%; width:100%;")
                       .white_box
                         div(style="float:right; margin-right:12px; margin-top:10px;")
-                          img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                          img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail
-                      img.thumnail( src="/img/main_default.png" alt='사진', style="height:75%; width:100%;")
-                      .white_box
-                        div(style="float:right; margin-right:12px; margin-top:10px;")
-                          img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                          img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail
-                      img.thumnail( src="/img/main_default.png"  alt='사진', style="height:75%; width:100%;")
-                      .white_box
-                        div(style="float:right;  margin-right:12px; margin-top:10px;")
-                          img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
-                          img(src="/img/main_mangirl.png", style="width:30px")
-                    .athumbnail
-                      img.thumnail( src="/img/main_default.png"  alt='사진', style="height:75%; width:100%;")
-                      .white_box
-                        div(style="float:right;  margin-right:12px; margin-top:10px;")
                           img(src="/img/main_girl.png", style="width:30px; margin-right:10px;")
                           img(src="/img/main_mangirl.png", style="width:30px")
                 .thumnail-btn
-                  img.thumnail-btn-img(src="/img/main_body_button_right.png")
+                  img.thumnail-btn-img(src="/img/main_body_button_right.png" style="float:right")
         .smallking
           div
             .container-2("data-ng-init"="showDramaList()")
@@ -92,7 +74,7 @@ html
             .timetable
               .timetable-rows.first-row
                 .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
+                  img(src="/img/main_jtbc.png", alt="Smiley face", height="25px",width="60px", )
                 div.width
                     .timetable-content(
                         "ng-repeat"="x in dramalist"
@@ -101,23 +83,27 @@ html
                         "ng-mouseleave"="cheked=false"
                         "class"="index_{{$index}} size_{{x.totaltime}}"
                         )
-                        span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")                       
+                        span("ng-show"="cheked") 채팅하러 가기 >
+                        span.center("ng-hide"="cheked" ) {{x.title}}
+                        .div("ng-show"="cheked" style="display:inline-block")
+                          input(type="image", value="여", style="width:30px; margin-right:5px;margin-left:10px; margin-top:10px" , src="../img/main_man.png", "ng-click"="openNewWindows(x.chatrooms[0]._id)")
+                          input(type="image", value="남여", style="width:30px;margin-top:10px", src="../img/main_mangirl.png", "ng-click"="openNewWindows(x.chatrooms[0]._id)") 
               .timetable-rows
                 .timetable-title
-                  img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")
+                  img(src="/img/main_tvn.png", alt="Smiley face", height="25px",width="60px", )
                 div.width
                     .timetable-content(
                         "ng-repeat"="x in dramalist"
                         "ng-if"="x.channel=='tvN'"
                         "ng-mouseover"="cheked=true"
                         "ng-mouseleave"="cheked=false"
-                        "class"="index_{{$index}}"
+                        "class"="index_{{$index}} size_{{x.totaltime}}"
                         )
-                        span("ng-hide"="cheked") {{x.title}}
-                        input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")
-                        input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)", "ng-show"="cheked")  
+                        span.center("ng-hide"="cheked") {{x.title}}
+                        .div( "ng-show"="cheked")
+                          span("ng-show"="cheked") 채팅하러 가기 >
+                          input(type="button", value="여", "ng-click"="openNewWindows(x.chatrooms[0]._id)")
+                          input(type="button", value="남여", "ng-click"="openNewWindows(x.chatrooms[0]._id)") 
               .timetable-rows
                 .timetable-title
                   img(src="/img/main_tvn.png", alt="Smiley face", height="100%",width="50%", vertical-align= "middle")

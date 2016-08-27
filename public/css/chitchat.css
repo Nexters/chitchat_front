@@ -151,14 +151,14 @@ ul.topnav li.right {float: right;}
 
 .thumnail-btn{
     display: inline-block;
-    height:auto;
+    height:200px;
     width:6%;
     
 }
 
 .thumnail-btn-img{
     width:40px;
-    margin-top:43px;
+    margin-top:80px;
 }
 
 .left-btn{
@@ -340,7 +340,20 @@ div{
 .first-row{
     border: none;
     border-bottom:0.5px solid #BABABB;
+    
 
+}
+
+.goodwife{
+    background-image: url("../img/thumnail/Concert_7080.png");
+    background-repeat:no-repeat;
+    background-size: cover;  
+}
+
+.fourman{
+    background-image: url("../img/thumnail/GayoMudae.png");
+    background-repeat:no-repeat;
+    background-size: cover;   
 }
 
 .timetable-title{
@@ -348,10 +361,9 @@ div{
     color: #565656;
     width:13%;
     height:100%;
-    padding: 0;
+    padding: 15px 24.5px;
     float: left;
-    margin: 0 auto;
-    padding : 25px;
+    vertical-align: middle;
      border-right:0.5px solid #BABABB;
 }
 
@@ -370,7 +382,7 @@ div.width{
     width:33.33%;
     height:100%;
     border-top: none;
-   
+    border-right: 0.5px solid #BABABB;
     margin:0;
     margin-left:0;
     color : #565656;
@@ -385,4 +397,8 @@ div.width{
 
 .size_70{
     width: 50%
+}
+
+.image_width{
+
 }

@@ -19,19 +19,23 @@ html
         ul#bbb.topnav 
           li.notactive
             img.logo(src='./img/main_logo.png', alt='')
-          li.right(style='display:hidden', "ng-click"='join()', ng-show="!isLoggedIn()") 오유리님
+          li.right(style='display:hidden', "ng-click"='join()', ng-show="!isLoggedIn()") name님
     .smallking
         .info
             div#myinfo 내 정보
             div.text 회원정보는 가입하신 페이스북 계정에서 불러온 것으로 변경을 원할 시에는 
             div.text 페이스북 계정 정보를 수정하고 페이스북 정보 갱신하기 버튼을 눌러주세요.
             .inputinfo
-                input.normal(placeholder="닉네임" value="{{nickname}}")
-                input.normal(placeholder="고유 코드")
-                input.normal(placeholder="이름")
-                input.normal(placeholder="성별")
-                input.xlarge(placeholder="E-mail")
-                input.xlarge(placeholder="관심콘텐츠")    
+                input.normal(placeholder="    ddd" ng-model="nickname")
+                //- input.normal(placeholder="고유 코드" ng-model="")
+                input.normal(placeholder="    이름" ng-model="name")
+                input.normal(placeholder="    성별" ng-model="gender")
+                input.xlarge(placeholder="    E-mail" ng-model="email")
+                input.xlarge(placeholder="    관심콘텐츠" ng-model="likeDrama") 
+            .div
+                input.setting_btn(type="button", value="메인으로", style="width:100px")
+                input.setting_btn(type="button", value="변경", style="width:100px")
+                input.setting_btn(type="button", value="페이스북으로 정보 갱신하기", style="width:210px")
                 
     script
      | localStorage.token = !{token};

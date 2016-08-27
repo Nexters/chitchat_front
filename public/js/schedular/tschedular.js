@@ -19,13 +19,13 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     $scope.tvn = "tvn";
     $scope.name = "";
     $scope.nickname ="";
-
+   
 
     $scope.day = ""; //현재 요일탭
     $scope.dramalist = [];
     $scope.popularityList = [];
     $scope.favoriteList = [];
-
+    console.log("로컬에서 실행하고 있다네");
 
     // ng-repeat="x in popularityList",
     // src='/img/main_{{x.title}}',
@@ -57,6 +57,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
     }
 
      $scope.gosetting = function(){
+          
         $window.location.href = '/setting';
     }
 
@@ -71,6 +72,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         var promise = userService.getFavorites(token);
         promise.then(function (dramas) {
             $scope.favoriteList = dramas;
+            console.log("favorite"+$scope.favoriteList);
             $scope.$apply();
         }, function () {
 
