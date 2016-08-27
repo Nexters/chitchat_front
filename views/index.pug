@@ -32,21 +32,21 @@ html
                 .thumnail-btn
                   img.thumnail-btn-img.left-btn(src="/img/main_body_button_left.png" style="float:left")
                 .realthumnail
-                    .athumbnail("ng-repeat"="drama in truncatedList")
-                      img.thumnail( "ng-src"="/img/{{drama.title}}.png" alt='사진', style="height:75%; width:100%;")
-                      .white_box
-                        div(style="float:right; margin-right:12px; margin-top:10px;")
-                          button("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
-                            img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
+                  .athumbnail("ng-repeat"="drama in truncatedList")
+                    img.thumnail( "ng-src"="/img/{{drama.title}}.png" alt='사진', style="height:75%; width:100%;")
+                    .white_box
+                      div(style="float:right; margin-right:12px; margin-top:10px;")
+                        button("ng-repeat"="c in drama.chatrooms", "ng-if"="filterChatroom(c)", style="{ background-color: white; border: white; }")
+                          img("ng-src"="{{getGenderFromChatroom(c)}}", "ng-click"="openNewWindows(c._id)", style="width:30px;", ng-style="$last ? '' : 'margin-right:10px;'")
                 .thumnail-btn
                   img.thumnail-btn-img(src="/img/main_body_button_right.png" style="float:right")
         .smallking
           div
-            .container-2("data-ng-init"="showDramaList()")
+            .container-2()
               .container-2-btn
                 ul
                   li("ng-repeat"="day in week")
-                    a("ng-click"="showDramaList(day.en)") {{day.kr}}
+                    a("ng-click"="setWeekDay(day.index)") {{day.kr}}
               hr.border
               div
                 ul.container-2-time

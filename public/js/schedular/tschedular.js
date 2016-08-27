@@ -194,18 +194,29 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
     }
 
-    $scope.showDramaList = function () {
+    $scope.showDramaList = function (targetDay) {
         // if already checked, return 0;
         if ($scope.checked) {
             return;
         }
 
         var today = new Date();
-        var tomorrow = new Date();
 
-        tomorrow.setDate(today.getDate() + 1);
+        var todayDay = today.getDay();
+        var dayDiff = (targetDay + 7 - todayDay) % 7;
 
-        var promise = dramaService.retrieveDramas(today.toJSON(), tomorrow.toJSON());
+        var targetDate = new Date();
+        targetDate.setDate(today.getDate() + dayDiff);
+
+        var targetHour = $scope.now - (today.getTimezoneOffset() / 60);
+
+
+        var timeStart = new Date(new Date(today.getTime() + 86400000 * dayDiff).setHours(targetHour - 1, 0,0,0));
+        var timeEnd = new Date(new Date(today.getTime() + 86400000 * dayDiff).setHours(targetHour + 3, 0,0,0));
+
+
+        console.log(timeStart.toJSON());
+        var promise = dramaService.retrieveDramas(timeStart.toJSON(), timeEnd.toJSON());
 
         promise.then(function (dramas) {
             $scope.dramalist = dramas;
@@ -234,6 +245,8 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
             $scope.now = 0;
         }
         console.log("시간을 빼보았다 : " + $scope.now);
+
+        $scope.showDramaList($scope.day);
     }
 
     $scope.right1Hour = function () {
@@ -245,11 +258,20 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         }
 
         console.log("시간을 더해보았다 : " + $scope.now);
+
+        $scope.showDramaList($scope.day);
+    }
+
+    $scope.setWeekDay = function (day) {
+        $scope.day = day;
+
+        $scope.showDramaList($scope.day);
     }
 
     function getCurrentHour() {
         var d = new Date();
         $scope.now = d.getHours();
+        $scope.day = d.getDay();
 
         console.log("getCurrentHOur내" + $scope.now);
     };
@@ -300,30 +322,37 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
         $scope.week = [
             {
+                index: 1,
                 en: "mon",
                 kr: "월"
             },
             {
+                index: 2,
                 en: "tue",
                 kr: "화"
             },
             {
+                index: 3,
                 en: "wed",
                 kr: "수"
             },
             {
+                index: 4,
                 en: "thu",
                 kr: "목"
             },
             {
+                index: 5,
                 en: "fri",
                 kr: "금"
             },
             {
+                index: 6,
                 en: "sat",
                 kr: "토"
             },
             {
+                index: 0,
                 en: "sun",
                 kr: "일"
             }
@@ -340,6 +369,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
         $scope.refreshTruncatedList();
 
         getCurrentHour();
+        $scope.showDramaList($scope.day);
     }
 
     // 위 함수 선언이랑 같이 가장 아래에 있어야 함
