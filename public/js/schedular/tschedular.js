@@ -130,6 +130,7 @@ tschedularApp.controller('tschedularCtrl', function ($scope, $http, $window, $in
 
 
                 //$window.localStorage.setItem('userInfo', user);
+                $window.localStorage.setItem('uid', user.id);
                 $window.localStorage.setItem('name', user.name);
                 $window.localStorage.setItem('nickname', user.nickname);
                 $window.localStorage.setItem('gender', user.gender);

@@ -40,7 +40,8 @@ tschedularApp.service('userService', function ($http) {
           var user = res.value;
 
           var ret = new User();
-    
+
+          ret.id = user._id;
           ret.name = user.name;
           ret.nickname = user.nickname;
           ret.gender = user.gender;
